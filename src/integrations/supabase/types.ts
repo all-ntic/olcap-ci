@@ -56,6 +56,57 @@ export type Database = {
         }
         Relationships: []
       }
+      donations: {
+        Row: {
+          amount: number
+          campaign: string | null
+          created_at: string
+          currency: string
+          donor_email: string
+          donor_name: string
+          donor_phone: string | null
+          id: string
+          message: string | null
+          payment_method: string | null
+          payment_status: string
+          paystack_reference: string
+          paystack_transaction_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          campaign?: string | null
+          created_at?: string
+          currency?: string
+          donor_email: string
+          donor_name: string
+          donor_phone?: string | null
+          id?: string
+          message?: string | null
+          payment_method?: string | null
+          payment_status?: string
+          paystack_reference: string
+          paystack_transaction_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          campaign?: string | null
+          created_at?: string
+          currency?: string
+          donor_email?: string
+          donor_name?: string
+          donor_phone?: string | null
+          id?: string
+          message?: string | null
+          payment_method?: string | null
+          payment_status?: string
+          paystack_reference?: string
+          paystack_transaction_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       medias: {
         Row: {
           created_at: string
