@@ -1,1 +1,10 @@
 project_id = "rlhzctermnblvjrozoyf"
+
+[functions.olcap-chatbot]
+verify_jwt = false
+
+[functions.paystack-donation]
+verify_jwt = false
+
+[functions.paystack-webhook]
+verify_jwt = false

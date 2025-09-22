@@ -53,9 +53,11 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <Button size="sm" className="hidden md:flex pulse-glow">
-              <Heart className="w-4 h-4 mr-2" />
-              Faire un don
+            <Button size="sm" className="hidden md:flex pulse-glow" asChild>
+              <Link to="/don">
+                <Heart className="w-4 h-4 mr-2" />
+                Faire un don
+              </Link>
             </Button>
 
             {/* Mobile menu button */}
@@ -88,9 +90,11 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              <Button size="sm" className="mt-4 w-fit">
-                <Heart className="w-4 h-4 mr-2" />
-                Faire un don
+              <Button size="sm" className="mt-4 w-fit" asChild>
+                <Link to="/don">
+                  <Heart className="w-4 h-4 mr-2" />
+                  Faire un don
+                </Link>
               </Button>
             </nav>
           </div>
