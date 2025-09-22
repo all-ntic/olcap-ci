@@ -1,6 +1,7 @@
 import { Activity, Users, Heart, Calendar, Target, Award } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 const Projets = () => {
   const projects = [
@@ -261,20 +262,20 @@ const Projets = () => {
               Chaque contribution compte pour sauver des vies.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/don" 
+              <Link 
+                to="/don" 
                 className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors pulse-glow"
               >
                 <Heart className="w-5 h-5 mr-2" />
                 Faire un Don
-              </a>
-              <a 
-                href="/contact" 
+              </Link>
+              <Link 
+                to="/contact" 
                 className="inline-flex items-center px-8 py-3 border border-primary text-primary rounded-lg hover:bg-primary/10 transition-colors"
               >
                 <Users className="w-5 h-5 mr-2" />
                 Devenir Partenaire
-              </a>
+              </Link>
             </div>
           </div>
         </div>

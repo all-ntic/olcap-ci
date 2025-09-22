@@ -1,5 +1,6 @@
 import { Users, Heart, Award, Globe } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const Equipe = () => {
   const teamMembers = [
@@ -164,20 +165,20 @@ const Equipe = () => {
               dévoués pour renforcer notre équipe et amplifier notre impact.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/contact" 
+              <Link 
+                to="/contact" 
                 className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
               >
                 <Users className="w-5 h-5 mr-2" />
                 Devenir Bénévole
-              </a>
-              <a 
-                href="/contact" 
+              </Link>
+              <Link 
+                to="/contact" 
                 className="inline-flex items-center px-6 py-3 border border-primary text-primary rounded-lg hover:bg-primary/10 transition-colors"
               >
                 <Heart className="w-5 h-5 mr-2" />
                 Nous Contacter
-              </a>
+              </Link>
             </div>
           </div>
         </div>

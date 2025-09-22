@@ -1,5 +1,6 @@
 import { Shield, User, Database, Mail, Calendar } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const MentionsLegales = () => {
   const legalSections = [
@@ -188,13 +189,13 @@ const MentionsLegales = () => {
             <p className="text-muted-foreground mb-6">
               Notre équipe est à votre disposition pour tout éclaircissement
             </p>
-            <a 
-              href="/contact" 
+            <Link 
+              to="/contact" 
               className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
             >
               <Mail className="w-5 h-5 mr-2" />
               Nous Contacter
-            </a>
+            </Link>
           </div>
         </div>
       </section>
