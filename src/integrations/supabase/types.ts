@@ -14,138 +14,204 @@ export type Database = {
   }
   public: {
     Tables: {
-      contacts: {
+      chatbot_rate_limits: {
         Row: {
-          appointment_date: string | null
-          contact_type: string | null
           created_at: string
-          email: string
           id: string
-          message: string | null
+          identifier: string
+          request_count: number
+          window_start: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          identifier: string
+          request_count?: number
+          window_start?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          identifier?: string
+          request_count?: number
+          window_start?: string
+        }
+        Relationships: []
+      }
+      contact_messages: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string | null
+          id: string
+          message: string
           name: string
           phone: string | null
-          preferred_contact: string | null
           status: string | null
+          subject: string | null
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message: string
+          name: string
+          phone?: string | null
+          status?: string | null
+          subject?: string | null
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          status?: string | null
+          subject?: string | null
+        }
+        Relationships: []
+      }
+      faqs: {
+        Row: {
+          answer: string
+          category: string | null
+          created_at: string
+          display_order: number | null
+          id: string
+          question: string
           updated_at: string
         }
         Insert: {
-          appointment_date?: string | null
-          contact_type?: string | null
+          answer: string
+          category?: string | null
           created_at?: string
-          email: string
+          display_order?: number | null
           id?: string
-          message?: string | null
-          name: string
-          phone?: string | null
-          preferred_contact?: string | null
-          status?: string | null
+          question: string
           updated_at?: string
         }
         Update: {
-          appointment_date?: string | null
-          contact_type?: string | null
+          answer?: string
+          category?: string | null
+          created_at?: string
+          display_order?: number | null
+          id?: string
+          question?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      participants: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          phone: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          phone: string
+        }
+        Update: {
           created_at?: string
           email?: string
           id?: string
-          message?: string | null
           name?: string
-          phone?: string | null
-          preferred_contact?: string | null
-          status?: string | null
-          updated_at?: string
+          phone?: string
         }
         Relationships: []
       }
-      donations: {
+      participants_secure: {
         Row: {
-          amount: number
-          campaign: string | null
-          created_at: string
-          currency: string
-          donor_email: string
-          donor_name: string
-          donor_phone: string | null
+          created_at: string | null
+          email: string
           id: string
-          message: string | null
-          payment_method: string | null
-          payment_status: string
-          paystack_reference: string
-          paystack_transaction_id: string | null
-          updated_at: string
+          name: string
+          phone: string
         }
         Insert: {
-          amount: number
-          campaign?: string | null
-          created_at?: string
-          currency?: string
-          donor_email: string
-          donor_name: string
-          donor_phone?: string | null
+          created_at?: string | null
+          email: string
           id?: string
-          message?: string | null
-          payment_method?: string | null
-          payment_status?: string
-          paystack_reference: string
-          paystack_transaction_id?: string | null
-          updated_at?: string
+          name: string
+          phone: string
         }
         Update: {
-          amount?: number
-          campaign?: string | null
-          created_at?: string
-          currency?: string
-          donor_email?: string
-          donor_name?: string
-          donor_phone?: string | null
+          created_at?: string | null
+          email?: string
           id?: string
-          message?: string | null
-          payment_method?: string | null
-          payment_status?: string
-          paystack_reference?: string
-          paystack_transaction_id?: string | null
-          updated_at?: string
+          name?: string
+          phone?: string
         }
         Relationships: []
       }
-      medias: {
+      projects: {
         Row: {
+          category: string | null
           created_at: string
-          description: string | null
-          dimensions: string | null
-          file_url: string
+          description: string
+          display_order: number | null
           id: string
-          material_type: string | null
-          media_type: string
-          thumbnail_url: string | null
+          image_url: string | null
+          is_featured: boolean | null
+          project_url: string | null
+          technologies: string[] | null
           title: string
           updated_at: string
-          year: number | null
         }
         Insert: {
+          category?: string | null
           created_at?: string
-          description?: string | null
-          dimensions?: string | null
-          file_url: string
+          description: string
+          display_order?: number | null
           id?: string
-          material_type?: string | null
-          media_type: string
-          thumbnail_url?: string | null
+          image_url?: string | null
+          is_featured?: boolean | null
+          project_url?: string | null
+          technologies?: string[] | null
           title: string
           updated_at?: string
-          year?: number | null
         }
         Update: {
+          category?: string | null
           created_at?: string
-          description?: string | null
-          dimensions?: string | null
-          file_url?: string
+          description?: string
+          display_order?: number | null
           id?: string
-          material_type?: string | null
-          media_type?: string
-          thumbnail_url?: string | null
+          image_url?: string | null
+          is_featured?: boolean | null
+          project_url?: string | null
+          technologies?: string[] | null
           title?: string
           updated_at?: string
-          year?: number | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
         }
         Relationships: []
       }
@@ -154,10 +220,20 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      cleanup_old_rate_limits: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -284,6 +360,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+    },
   },
 } as const
