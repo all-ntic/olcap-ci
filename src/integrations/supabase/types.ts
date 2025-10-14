@@ -86,93 +86,51 @@ export type Database = {
       donations: {
         Row: {
           amount: number
+          campaign: string | null
           created_at: string
           currency: string | null
-          email: string
+          donor_email: string
+          donor_name: string
+          donor_phone: string | null
           id: string
-          metadata: Json | null
-          name: string
+          message: string | null
           payment_method: string | null
-          reference: string | null
-          status: string | null
-        }
-        Insert: {
-          amount: number
-          created_at?: string
-          currency?: string | null
-          email: string
-          id?: string
-          metadata?: Json | null
-          name: string
-          payment_method?: string | null
-          reference?: string | null
-          status?: string | null
-        }
-        Update: {
-          amount?: number
-          created_at?: string
-          currency?: string | null
-          email?: string
-          id?: string
-          metadata?: Json | null
-          name?: string
-          payment_method?: string | null
-          reference?: string | null
-          status?: string | null
-        }
-        Relationships: []
-      }
-      faqs: {
-        Row: {
-          answer: string
-          category: string | null
-          created_at: string
-          display_order: number | null
-          id: string
-          question: string
+          payment_status: string | null
+          paystack_reference: string
+          paystack_transaction_id: string | null
           updated_at: string
         }
         Insert: {
-          answer: string
-          category?: string | null
+          amount: number
+          campaign?: string | null
           created_at?: string
-          display_order?: number | null
+          currency?: string | null
+          donor_email: string
+          donor_name: string
+          donor_phone?: string | null
           id?: string
-          question: string
+          message?: string | null
+          payment_method?: string | null
+          payment_status?: string | null
+          paystack_reference: string
+          paystack_transaction_id?: string | null
           updated_at?: string
         }
         Update: {
-          answer?: string
-          category?: string | null
+          amount?: number
+          campaign?: string | null
           created_at?: string
-          display_order?: number | null
+          currency?: string | null
+          donor_email?: string
+          donor_name?: string
+          donor_phone?: string | null
           id?: string
-          question?: string
+          message?: string | null
+          payment_method?: string | null
+          payment_status?: string | null
+          paystack_reference?: string
+          paystack_transaction_id?: string | null
           updated_at?: string
-        }
-        Relationships: []
-      }
-      participants: {
-        Row: {
-          created_at: string
-          email: string
-          id: string
-          name: string
-          phone: string
-        }
-        Insert: {
-          created_at?: string
-          email: string
-          id?: string
-          name: string
-          phone: string
-        }
-        Update: {
-          created_at?: string
-          email?: string
-          id?: string
-          name?: string
-          phone?: string
         }
         Relationships: []
       }
@@ -197,48 +155,6 @@ export type Database = {
           id?: string
           name?: string
           phone?: string
-        }
-        Relationships: []
-      }
-      projects: {
-        Row: {
-          category: string | null
-          created_at: string
-          description: string
-          display_order: number | null
-          id: string
-          image_url: string | null
-          is_featured: boolean | null
-          project_url: string | null
-          technologies: string[] | null
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          category?: string | null
-          created_at?: string
-          description: string
-          display_order?: number | null
-          id?: string
-          image_url?: string | null
-          is_featured?: boolean | null
-          project_url?: string | null
-          technologies?: string[] | null
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          category?: string | null
-          created_at?: string
-          description?: string
-          display_order?: number | null
-          id?: string
-          image_url?: string | null
-          is_featured?: boolean | null
-          project_url?: string | null
-          technologies?: string[] | null
-          title?: string
-          updated_at?: string
         }
         Relationships: []
       }
