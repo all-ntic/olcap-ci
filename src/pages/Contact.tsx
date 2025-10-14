@@ -8,6 +8,28 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+// Validation schema
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Le nom est requis").max(100, "Le nom ne peut pas dépasser 100 caractères"),
+  email: z.string().trim().email("Email invalide").max(255, "L'email ne peut pas dépasser 255 caractères"),
+  phone: z.string().optional().refine(
+    (val) => !val || /^\+?[0-9\s-]{8,20}$/.test(val),
+    "Le numéro de téléphone doit être valide (8-20 chiffres)"
+  ),
+  message: z.string().trim().min(1, "Le message est requis").max(2000, "Le message ne peut pas dépasser 2000 caractères"),
+  contactType: z.enum(['general', 'volunteer', 'partnership', 'donation', 'medical', 'media'], {
+    errorMap: () => ({ message: "Type de demande invalide" })
+  }),
+  preferredContact: z.enum(['email', 'phone', 'whatsapp'], {
+    errorMap: () => ({ message: "Moyen de contact invalide" })
+  }),
+  appointmentDate: z.string().optional().refine(
+    (val) => !val || new Date(val) > new Date(),
+    "La date de rendez-vous doit être dans le futur"
+  ),
+});
 
 const Contact = () => {
   const { toast } = useToast();
@@ -58,15 +80,39 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
+      // Validate form data
+      const validationResult = contactSchema.safeParse({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || undefined,
+        message: formData.message,
+        contactType: formData.contactType || 'general',
+        preferredContact: formData.preferredContact || 'email',
+        appointmentDate: formData.appointmentDate || undefined,
+      });
+
+      if (!validationResult.success) {
+        const firstError = validationResult.error.errors[0];
+        toast({
+          title: "Erreur de validation",
+          description: firstError.message,
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      const validatedData = validationResult.data;
+
       const { error } = await supabase.from('contact_messages').insert([
         {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || null,
-          contact_type: formData.contactType || 'general',
-          preferred_contact: formData.preferredContact || 'email',
-          message: formData.message || 'Pas de message',
-          appointment_date: formData.appointmentDate || null
+          name: validatedData.name,
+          email: validatedData.email,
+          phone: validatedData.phone || null,
+          contact_type: validatedData.contactType,
+          preferred_contact: validatedData.preferredContact,
+          message: validatedData.message,
+          appointment_date: validatedData.appointmentDate || null
         }
       ]);
 
