@@ -40,37 +40,85 @@ export type Database = {
       }
       contact_messages: {
         Row: {
+          appointment_date: string | null
           company: string | null
+          contact_type: string | null
           created_at: string
           email: string | null
           id: string
           message: string
           name: string
           phone: string | null
+          preferred_contact: string | null
           status: string | null
           subject: string | null
         }
         Insert: {
+          appointment_date?: string | null
           company?: string | null
+          contact_type?: string | null
           created_at?: string
           email?: string | null
           id?: string
           message: string
           name: string
           phone?: string | null
+          preferred_contact?: string | null
           status?: string | null
           subject?: string | null
         }
         Update: {
+          appointment_date?: string | null
           company?: string | null
+          contact_type?: string | null
           created_at?: string
           email?: string | null
           id?: string
           message?: string
           name?: string
           phone?: string | null
+          preferred_contact?: string | null
           status?: string | null
           subject?: string | null
+        }
+        Relationships: []
+      }
+      donations: {
+        Row: {
+          amount: number
+          created_at: string
+          currency: string | null
+          email: string
+          id: string
+          metadata: Json | null
+          name: string
+          payment_method: string | null
+          reference: string | null
+          status: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          currency?: string | null
+          email: string
+          id?: string
+          metadata?: Json | null
+          name: string
+          payment_method?: string | null
+          reference?: string | null
+          status?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          currency?: string | null
+          email?: string
+          id?: string
+          metadata?: Json | null
+          name?: string
+          payment_method?: string | null
+          reference?: string | null
+          status?: string | null
         }
         Relationships: []
       }

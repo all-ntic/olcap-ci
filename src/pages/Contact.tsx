@@ -58,14 +58,14 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.from('contacts').insert([
+      const { error } = await supabase.from('contact_messages').insert([
         {
           name: formData.name,
           email: formData.email,
           phone: formData.phone || null,
           contact_type: formData.contactType || 'general',
           preferred_contact: formData.preferredContact || 'email',
-          message: formData.message || null,
+          message: formData.message || 'Pas de message',
           appointment_date: formData.appointmentDate || null
         }
       ]);
