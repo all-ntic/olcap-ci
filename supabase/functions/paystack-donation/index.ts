@@ -66,7 +66,7 @@ serve(async (req) => {
 
     const { name, email, amount, phone, message, campaign, isAnonymous } = validationResult.data;
 
-    console.log('Donation request validated:', { name, email, amount, campaign, isAnonymous });
+    console.log('Donation request validated:', { amount, campaign, isAnonymous });
 
     // Convert amount to kobo (CFA centimes)
     const amountInKobo = Math.round(amount * 100);
@@ -128,7 +128,11 @@ serve(async (req) => {
       // Continue anyway - payment is more important than logging
     }
 
-    console.log('Donation initialized successfully:', paystackData.data.reference);
+    console.log('Donation initialized successfully:', { 
+      reference: paystackData.data.reference,
+      amount,
+      campaign: campaign || 'general'
+    });
 
     return new Response(JSON.stringify({
       success: true,
