@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageCircle, X, Send } from "lucide-react";
+import { Bot, X, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -89,16 +89,16 @@ const Chatbot = () => {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 rounded-full w-14 h-14 md:w-16 md:h-16 bg-accent hover:bg-accent/90 text-white shadow-lg animate-pulse-soft"
+        className="fixed bottom-24 right-6 z-50 rounded-full w-14 h-14 bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all"
         aria-label="Ouvrir le chat"
       >
-        <MessageCircle className="w-6 h-6" />
+        <Bot className="w-6 h-6" />
       </Button>
     );
   }
 
   return (
-    <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 w-[90vw] md:w-96 h-[70vh] md:h-[500px] max-h-[600px]">
+    <div className="fixed bottom-24 right-6 z-50 w-[90vw] md:w-96 h-[70vh] md:h-[500px] max-h-[600px]">
       <Card className="h-full flex flex-col shadow-2xl border-2 border-primary/20">
         <CardHeader className="bg-gradient-to-r from-primary to-accent text-white p-4 rounded-t-lg flex-shrink-0">
           <div className="flex items-center justify-between">
