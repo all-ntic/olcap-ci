@@ -89,7 +89,7 @@ const Chatbot = () => {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-24 right-24 z-40 rounded-full w-16 h-16 bg-accent hover:bg-accent/90 text-white shadow-lg animate-pulse-soft"
+        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 rounded-full w-14 h-14 md:w-16 md:h-16 bg-accent hover:bg-accent/90 text-white shadow-lg animate-pulse-soft"
         aria-label="Ouvrir le chat"
       >
         <MessageCircle className="w-6 h-6" />
@@ -98,9 +98,9 @@ const Chatbot = () => {
   }
 
   return (
-    <div className="fixed bottom-24 right-6 z-40 w-96 max-w-[calc(100vw-2rem)] h-[500px] max-h-[calc(100vh-8rem)]">
-      <Card className="h-full flex flex-col shadow-xl border-2 border-primary/20">
-        <CardHeader className="bg-gradient-to-r from-primary to-accent text-white p-4 rounded-t-lg">
+    <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 w-[90vw] md:w-96 h-[70vh] md:h-[500px] max-h-[600px]">
+      <Card className="h-full flex flex-col shadow-2xl border-2 border-primary/20">
+        <CardHeader className="bg-gradient-to-r from-primary to-accent text-white p-4 rounded-t-lg flex-shrink-0">
           <div className="flex items-center justify-between">
             <CardTitle className="text-lg">Assistant OLCAP-CI</CardTitle>
             <Button
@@ -114,7 +114,7 @@ const Chatbot = () => {
           </div>
         </CardHeader>
 
-        <CardContent className="flex-1 flex flex-col p-0">
+        <CardContent className="flex-1 flex flex-col p-0 overflow-hidden">
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.map((message) => (
@@ -123,14 +123,19 @@ const Chatbot = () => {
                 className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
               >
                 <div
-                  className={`max-w-[80%] p-3 rounded-lg text-sm break-words ${
+                  className={`max-w-[85%] p-3 rounded-lg text-sm ${
                     message.isBot
                       ? 'bg-muted text-foreground'
                       : 'bg-primary text-primary-foreground'
                   }`}
-                  style={{ overflowWrap: 'break-word', wordBreak: 'break-word' }}
+                  style={{ 
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word',
+                    wordBreak: 'break-word',
+                    hyphens: 'auto'
+                  }}
                 >
-                  {message.text}
+                  <div className="whitespace-pre-wrap">{message.text}</div>
                 </div>
               </div>
             ))}
@@ -149,7 +154,7 @@ const Chatbot = () => {
 
           {/* Quick Questions */}
           {messages.length === 1 && (
-            <div className="p-4 border-t bg-muted/30">
+            <div className="p-4 border-t bg-muted/30 flex-shrink-0">
               <p className="text-xs text-muted-foreground mb-2">Questions fréquentes :</p>
               <div className="space-y-1">
                 {quickQuestions.map((question, index) => (
@@ -166,7 +171,7 @@ const Chatbot = () => {
           )}
 
           {/* Input */}
-          <div className="p-4 border-t">
+          <div className="p-4 border-t flex-shrink-0">
             <form onSubmit={handleSubmit} className="flex space-x-2">
               <Input
                 value={inputMessage}
