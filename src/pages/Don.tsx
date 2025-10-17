@@ -6,12 +6,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 const Don = () => {
   const { toast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -44,8 +46,12 @@ const Don = () => {
 
     try {
       // Validate form
-      if (!formData.name || !formData.email || !formData.amount) {
-        throw new Error('Veuillez remplir tous les champs obligatoires');
+      if (!formData.amount) {
+        throw new Error('Veuillez indiquer le montant de votre don');
+      }
+
+      if (!isAnonymous && (!formData.name || !formData.email)) {
+        throw new Error('Veuillez remplir votre nom et email ou cocher "Don anonyme"');
       }
 
       const amount = parseFloat(formData.amount);
@@ -56,12 +62,13 @@ const Don = () => {
       // Initialize payment with Paystack
       const { data, error } = await supabase.functions.invoke('paystack-donation', {
         body: {
-          name: formData.name,
-          email: formData.email,
+          name: isAnonymous ? "Donateur anonyme" : formData.name,
+          email: isAnonymous ? "anonyme@olcap-ci.org" : formData.email,
           phone: formData.phone,
           amount: amount,
           message: formData.message,
-          campaign: formData.campaign
+          campaign: formData.campaign,
+          isAnonymous: isAnonymous
         }
       });
 
@@ -162,42 +169,61 @@ const Don = () => {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Personal Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Nom complet *</Label>
-                      <Input
-                        id="name"
-                        type="text"
-                        placeholder="Votre nom complet"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange('name', e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email *</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="votre@email.com"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
-                        required
-                      />
-                    </div>
+                  {/* Anonymous Option */}
+                  <div className="flex items-center space-x-2 bg-muted/50 p-4 rounded-lg">
+                    <Checkbox 
+                      id="anonymous" 
+                      checked={isAnonymous}
+                      onCheckedChange={(checked) => setIsAnonymous(checked as boolean)}
+                    />
+                    <Label 
+                      htmlFor="anonymous" 
+                      className="text-sm font-medium cursor-pointer"
+                    >
+                      Don anonyme (vos informations ne seront pas enregistrées)
+                    </Label>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Téléphone</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="+225 XX XX XX XX XX"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                    />
-                  </div>
+                  {/* Personal Information */}
+                  {!isAnonymous && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Nom complet *</Label>
+                        <Input
+                          id="name"
+                          type="text"
+                          placeholder="Votre nom complet"
+                          value={formData.name}
+                          onChange={(e) => handleInputChange('name', e.target.value)}
+                          required={!isAnonymous}
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email *</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="votre@email.com"
+                          value={formData.email}
+                          onChange={(e) => handleInputChange('email', e.target.value)}
+                          required={!isAnonymous}
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {!isAnonymous && (
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">Téléphone</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="+225 XX XX XX XX XX"
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                      />
+                    </div>
+                  )}
 
                   {/* Campaign Selection */}
                   <div className="space-y-2">

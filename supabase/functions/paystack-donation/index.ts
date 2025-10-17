@@ -19,6 +19,7 @@ const donationSchema = z.object({
   amount: z.number().min(1000, "Minimum donation is 1000 XOF").max(10000000, "Maximum donation is 10,000,000 XOF"),
   message: z.string().max(1000).optional(),
   campaign: z.enum(['general', 'anemia', 'cancer', 'poverty', 'october_rose']).optional(),
+  isAnonymous: z.boolean().optional(),
 });
 
 serve(async (req) => {
@@ -49,6 +50,7 @@ serve(async (req) => {
       amount: Number(requestData.amount),
       message: requestData.message,
       campaign: requestData.campaign || 'general',
+      isAnonymous: requestData.isAnonymous || false,
     });
 
     if (!validationResult.success) {
@@ -62,9 +64,9 @@ serve(async (req) => {
       });
     }
 
-    const { name, email, amount, phone, message, campaign } = validationResult.data;
+    const { name, email, amount, phone, message, campaign, isAnonymous } = validationResult.data;
 
-    console.log('Donation request validated:', { name, email, amount, campaign });
+    console.log('Donation request validated:', { name, email, amount, campaign, isAnonymous });
 
     // Convert amount to kobo (CFA centimes)
     const amountInKobo = Math.round(amount * 100);
@@ -81,12 +83,13 @@ serve(async (req) => {
         amount: amountInKobo,
         currency: 'XOF', // CFA Franc
         reference: `OLCAP_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        callback_url: 'https://lceuznoxizqibnxazzge.supabase.co/don/success',
+        callback_url: 'https://olcap-ci.lovable.app/don/success',
         metadata: {
           donor_name: name,
           donor_phone: phone || '',
           message: message || '',
-          campaign: campaign || 'general'
+          campaign: campaign || 'general',
+          isAnonymous: isAnonymous || false
         }
       }),
     });
