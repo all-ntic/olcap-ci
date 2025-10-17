@@ -89,7 +89,7 @@ const Chatbot = () => {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-20 right-6 z-40 rounded-full w-14 h-14 bg-accent hover:bg-accent/90 text-white shadow-lg animate-pulse-soft"
+        className="fixed bottom-24 right-24 z-40 rounded-full w-16 h-16 bg-accent hover:bg-accent/90 text-white shadow-lg animate-pulse-soft"
         aria-label="Ouvrir le chat"
       >
         <MessageCircle className="w-6 h-6" />
@@ -98,7 +98,7 @@ const Chatbot = () => {
   }
 
   return (
-    <div className="fixed bottom-20 right-6 z-40 w-80 h-96">
+    <div className="fixed bottom-24 right-6 z-40 w-96 max-w-[calc(100vw-2rem)] h-[500px] max-h-[calc(100vh-8rem)]">
       <Card className="h-full flex flex-col shadow-xl border-2 border-primary/20">
         <CardHeader className="bg-gradient-to-r from-primary to-accent text-white p-4 rounded-t-lg">
           <div className="flex items-center justify-between">
