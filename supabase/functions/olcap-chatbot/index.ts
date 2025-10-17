@@ -6,6 +6,75 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Base de connaissances RAG (Knowledge Base)
+const knowledgeBase = {
+  faq: [
+    {
+      keywords: ["olcap", "ong", "organisation", "c'est quoi", "qu'est-ce"],
+      answer: "OLCAP-CI (Organisation pour la Lutte Contre l'Anémie et la Pauvreté en Côte d'Ivoire) est une ONG ivoirienne créée pour améliorer la santé et le bien-être des populations vulnérables. Nous luttons activement contre l'anémie, la pauvreté, l'analphabétisme et sensibilisons sur les cancers du sein et du col de l'utérus. 💚"
+    },
+    {
+      keywords: ["situé", "adresse", "localisation", "où", "yopougon", "contact"],
+      answer: "Notre siège est situé à Ananeraie, Yopougon, Abidjan 🇨🇮. Contactez-nous :\n📞 (+225) 01 51 83 82 82 / 05 95 20 33 72\n📧 olcapcin@gmail.com\n💬 WhatsApp: +225 01 51 83 82 82"
+    },
+    {
+      keywords: ["don", "donner", "contribution", "paiement", "paystack"],
+      answer: "Faire un don est simple et 100% sécurisé ! 🔒\n\nRendez-vous sur notre page /don où vous trouverez un formulaire intégré à Paystack (certifié PCI DSS). Vous pouvez :\n✅ Donner de façon anonyme\n✅ Choisir votre campagne (anémie, cancers, Octobre Rose)\n✅ Recevoir un reçu fiscal automatiquement\n\nChaque contribution fait la différence ! 💝"
+    },
+    {
+      keywords: ["bénévole", "volontaire", "aider", "participer", "engagement", "rejoindre"],
+      answer: "Votre temps et compétences sont précieux ! 🌟\n\nVous pouvez :\n👥 Devenir bénévole lors de nos campagnes\n📢 Être ambassadeur dans votre communauté\n🤝 Devenir partenaire (locaux, matériel médical)\n📚 Participer à nos formations de sensibilisateurs\n\nContactez-nous au (+225) 01 51 83 82 82 ou via /contact"
+    },
+    {
+      keywords: ["sécurisé", "sécurité", "protection", "paystack", "cryptage"],
+      answer: "Vos dons sont 100% sécurisés ! 🛡️\n\n✅ Paiements via Paystack (certifié PCI DSS)\n✅ Cryptage SSL 256-bit\n✅ Aucune donnée bancaire stockée\n✅ Reçu fiscal automatique\n\nVous pouvez donner en toute confiance !"
+    },
+    {
+      keywords: ["anémie", "dépistage", "test", "fer", "complément"],
+      answer: "Notre programme contre l'anémie comprend :\n\n🎯 Sensibilisation dans écoles et communautés\n🔬 Dépistages gratuits avec kits de test rapide\n💊 Distribution de compléments alimentaires et fer\n🏥 Orientation vers structures de santé partenaires\n👨‍🏫 Formation de sensibilisateurs communautaires\n\nEnsemble, luttons contre l'anémie !"
+    },
+    {
+      keywords: ["octobre rose", "cancer", "sein", "col utérus", "dépistage cancer"],
+      answer: "Oui ! Octobre Rose est un temps fort pour OLCAP-CI ! 🎀\n\nNos actions :\n📻 Émissions radio de sensibilisation\n⛪ Sessions dans églises et écoles\n🔬 Dépistages GRATUITS (sein & col de l'utérus)\n👨‍⚕️ 60 sensibilisateurs formés au CHU Treichville\n🤝 Partenariat avec PIF-CI\n\nRejoignez-nous en octobre !"
+    },
+    {
+      keywords: ["téléconsultation", "consultation", "médecin", "soins", "santé"],
+      answer: "OLCAP-CI se concentre sur la sensibilisation et le dépistage. 🏥\n\nNous ne proposons pas de téléconsultations directes, MAIS nous collaborons avec des professionnels de santé partenaires (CHU Treichville, cliniques) vers lesquels nous orientons les personnes ayant besoin de soins.\n\nNotre mission : détecter tôt et faciliter l'accès aux soins ! 💪"
+    },
+    {
+      keywords: ["équipe", "travailler", "emploi", "recrutement", "carrière"],
+      answer: "Nous sommes ravis d'accueillir de nouveaux membres ! 🌟\n\nPour rejoindre OLCAP-CI :\n📝 Formulaire de contact sur /contact\n📞 Appelez-nous au (+225) 01 51 83 82 82\n\nNous recherchons :\n👨‍⚕️ Professionnels de santé\n📱 Communicants\n❤️ Personnes passionnées par l'action sociale\n\nAucune expérience requise, formation assurée !"
+    },
+    {
+      keywords: ["facebook", "réseaux sociaux", "social media", "suivre", "page"],
+      answer: "Suivez-nous sur Facebook ! 📱\n\n👉 Page officielle : OLCAP-CI\n\nOn y partage :\n📸 Actions sur le terrain\n📅 Campagnes à venir\n💬 Témoignages inspirants\n💡 Conseils santé\n\nLikez, partagez, commentez pour nous aider à toucher plus de vies ! 🙏"
+    },
+    {
+      keywords: ["mission", "objectif", "valeur", "vision"],
+      answer: "Nos missions principales :\n\n🩸 Lutte contre l'anémie (causes, détection, correction, prévention)\n💰 Lutte contre la pauvreté\n📚 Lutte contre l'analphabétisme\n🎀 Sensibilisation cancers du sein et col de l'utérus\n\nNos valeurs : Santé, Solidarité, Prévention, Éducation, Espoir 💚"
+    },
+    {
+      keywords: ["partenariat", "collaboration", "partenaire", "accord"],
+      answer: "OLCAP-CI collabore avec :\n\n🏥 CHU de Treichville (formations)\n🤝 PIF-CI (accord-cadre cancers féminins)\n⛪ Églises pour sensibilisations\n🏫 Écoles et mairies\n🏢 Municipalités et autres ONG santé\n\nIntéressé par un partenariat ? Contactez-nous ! 🤝"
+    }
+  ]
+};
+
+// Fonction pour rechercher dans le RAG
+function searchInRAG(userMessage: string): string | null {
+  const messageLower = userMessage.toLowerCase();
+  
+  // Recherche dans la base de connaissances
+  for (const item of knowledgeBase.faq) {
+    // Vérifie si un des mots-clés correspond
+    if (item.keywords.some(keyword => messageLower.includes(keyword))) {
+      return item.answer;
+    }
+  }
+  
+  return null;
+}
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -13,16 +82,28 @@ serve(async (req) => {
   }
 
   try {
+    const { message } = await req.json();
+    console.log('Received message:', message);
+
+    // Étape 1 : Recherche dans le RAG
+    const ragAnswer = searchInRAG(message);
+    
+    if (ragAnswer) {
+      console.log('Answer found in RAG, no OpenAI call needed');
+      return new Response(JSON.stringify({ reply: ragAnswer, source: 'rag' }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Étape 2 : Si pas de réponse dans RAG, appel à OpenAI
+    console.log('No answer in RAG, calling OpenAI...');
+    
     const openAIApiKey = Deno.env.get('OPENAI_API_KEY');
     if (!openAIApiKey) {
       throw new Error('OPENAI_API_KEY is not set');
     }
 
-    const { message } = await req.json();
-
-    console.log('Received message:', message);
-
-    // Context spécifique à OLCAP-CI
+    // Context enrichi pour OpenAI avec toutes les infos du RAG
     const context = `Tu es l'assistant virtuel d'OLCAP-CI (Organisation pour la Lutte Contre l'Anémie et la Pauvreté en Côte d'Ivoire).
 
 MISSION: OLCAP-CI lutte contre l'anémie, la pauvreté, l'analphabétisme et sensibilise sur les cancers du sein et du col de l'utérus.
@@ -31,23 +112,34 @@ COORDONNÉES:
 - Adresse: Ananeraie, Yopougon, Abidjan, Côte d'Ivoire
 - Téléphones: (+225) 01 51 83 82 82 / (+225) 05 95 20 33 72
 - Email: olcapcin@gmail.com
+- WhatsApp: +225 01 51 83 82 82
 
 ACTIONS PRINCIPALES:
-- Sensibilisation cancers du sein & col de l'utérus (Octobre Rose)
+- Sensibilisation cancers du sein & col de l'utérus (émissions radio, campagnes locales, Octobre Rose)
 - Dépistages gratuits dans églises, écoles, mairies
 - Formations de sensibilisateurs (60 formés au CHU Treichville)
 - Partenariats avec associations, municipalités, ONG santé
 - Accord-cadre avec PIF-CI pour lutte cancers féminins
 
-Tu dois:
-1. Répondre en français de manière chaleureuse et professionnelle
-2. Fournir des informations précises sur OLCAP-CI
-3. Orienter vers la page de don quand approprié (/don)
-4. Rediriger vers le contact pour plus d'infos (/contact)
-5. Être empathique et encourageant
-6. Promouvoir l'engagement communautaire
+VALEURS: Santé, Solidarité, Prévention, Éducation, Espoir
 
-Sois concis mais informatif.`;
+DONS:
+- Formulaire sécurisé via Paystack (page /don)
+- Paiements certifiés PCI DSS avec cryptage SSL 256-bit
+- Possibilité de don anonyme
+- Reçu fiscal automatique
+
+Tu dois:
+1. Répondre en français de manière chaleureuse, empathique et professionnelle
+2. Fournir des informations précises sur OLCAP-CI
+3. Utiliser des emojis pour rendre les réponses plus vivantes et engageantes
+4. Orienter vers /don pour les dons
+5. Orienter vers /contact pour plus d'infos ou bénévolat
+6. Promouvoir l'engagement communautaire
+7. Être concis mais informatif (max 150 mots)
+8. Encourager l'action et la solidarité
+
+Si on te pose une question sur quelque chose que tu ne sais pas, invite gentiment la personne à nous contacter directement.`;
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -62,7 +154,7 @@ Sois concis mais informatif.`;
           { role: 'user', content: message }
         ],
         max_tokens: 500,
-        temperature: 0.7,
+        temperature: 0.8,
       }),
     });
 
@@ -75,13 +167,13 @@ Sois concis mais informatif.`;
 
     console.log('OpenAI response:', reply);
 
-    return new Response(JSON.stringify({ reply }), {
+    return new Response(JSON.stringify({ reply, source: 'openai' }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
     console.error('Error in olcap-chatbot function:', error);
     return new Response(JSON.stringify({ 
-      error: 'Une erreur est survenue. Veuillez réessayer.' 
+      error: 'Une erreur est survenue. Contactez-nous au (+225) 01 51 83 82 82 ou via olcapcin@gmail.com 📞' 
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
