@@ -50,12 +50,12 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent animate-shimmer" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <Alert className="border-white/30 bg-white/10 backdrop-blur-sm">
-            <Ribbon className="h-5 w-5 text-white" />
-            <AlertTitle className="text-white font-bold text-lg">Octobre Rose 2025 - Ensemble contre le cancer du sein</AlertTitle>
-            <AlertDescription className="text-white/95">
+          <Alert className="border-white/50 bg-white/95 backdrop-blur-sm">
+            <Ribbon className="h-5 w-5 text-pink-rose" />
+            <AlertTitle className="text-pink-rose font-bold text-lg">Octobre Rose 2025 - Ensemble contre le cancer du sein</AlertTitle>
+            <AlertDescription className="text-foreground">
               Rejoignez notre campagne de dépistage gratuit ce mois-ci. Ensemble, sauvons des vies ! 
-              <Link to="/projets" className="underline font-semibold ml-2 hover:text-white transition-colors">
+              <Link to="/projets" className="underline font-semibold ml-2 hover:text-pink-rose transition-colors text-pink-rose">
                 Voir nos actions →
               </Link>
             </AlertDescription>
