@@ -9,6 +9,35 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+// Validation schema for donation form
+const donationSchema = z.object({
+  name: z.string()
+    .trim()
+    .min(1, { message: "Le nom est requis" })
+    .max(100, { message: "Le nom ne peut pas dépasser 100 caractères" }),
+  email: z.string()
+    .trim()
+    .email({ message: "Adresse email invalide" })
+    .max(255, { message: "L'email ne peut pas dépasser 255 caractères" }),
+  phone: z.string()
+    .trim()
+    .max(20, { message: "Le numéro de téléphone ne peut pas dépasser 20 caractères" })
+    .optional()
+    .or(z.literal("")),
+  amount: z.number()
+    .min(1000, { message: "Le montant minimum est de 1 000 FCFA" })
+    .max(100000000, { message: "Le montant ne peut pas dépasser 100 000 000 FCFA" }),
+  message: z.string()
+    .trim()
+    .max(1000, { message: "Le message ne peut pas dépasser 1 000 caractères" })
+    .optional()
+    .or(z.literal("")),
+  campaign: z.string()
+    .min(1, { message: "Veuillez sélectionner une destination" }),
+  isAnonymous: z.boolean()
+});
 
 const Don = () => {
   const { toast } = useToast();
@@ -45,31 +74,34 @@ const Don = () => {
     setIsProcessing(true);
 
     try {
-      // Validate form
-      if (!formData.amount) {
-        throw new Error('Veuillez indiquer le montant de votre don');
-      }
-
-      if (!isAnonymous && (!formData.name || !formData.email)) {
-        throw new Error('Veuillez remplir votre nom et email ou cocher "Don anonyme"');
-      }
-
+      // Parse amount
       const amount = parseFloat(formData.amount);
-      if (isNaN(amount) || amount < 1000) {
-        throw new Error('Le montant minimum est de 1 000 FCFA');
+      if (isNaN(amount)) {
+        throw new Error('Veuillez indiquer un montant valide');
+      }
+
+      // Prepare data for validation
+      const dataToValidate = {
+        name: isAnonymous ? "Donateur anonyme" : formData.name,
+        email: isAnonymous ? "anonyme@olcap-ci.org" : formData.email,
+        phone: formData.phone || "",
+        amount: amount,
+        message: formData.message || "",
+        campaign: formData.campaign,
+        isAnonymous: isAnonymous
+      };
+
+      // Validate with Zod schema
+      const validationResult = donationSchema.safeParse(dataToValidate);
+      
+      if (!validationResult.success) {
+        const firstError = validationResult.error.errors[0];
+        throw new Error(firstError.message);
       }
 
       // Initialize payment with Paystack
       const { data, error } = await supabase.functions.invoke('paystack-donation', {
-        body: {
-          name: isAnonymous ? "Donateur anonyme" : formData.name,
-          email: isAnonymous ? "anonyme@olcap-ci.org" : formData.email,
-          phone: formData.phone,
-          amount: amount,
-          message: formData.message,
-          campaign: formData.campaign,
-          isAnonymous: isAnonymous
-        }
+        body: validationResult.data
       });
 
       if (error) throw error;
