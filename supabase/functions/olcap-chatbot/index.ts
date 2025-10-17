@@ -81,8 +81,7 @@ Sois concis mais informatif.`;
   } catch (error) {
     console.error('Error in olcap-chatbot function:', error);
     return new Response(JSON.stringify({ 
-      error: 'Une erreur est survenue. Veuillez réessayer.',
-      details: error.message 
+      error: 'Une erreur est survenue. Veuillez réessayer.' 
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

@@ -53,6 +53,23 @@ serve(async (req) => {
     if (event.event === 'charge.success') {
       const { reference, status, amount, currency, transaction_date, channel } = event.data;
       
+      // Verify the donation exists and is in pending status
+      const { data: existingDonation, error: fetchError } = await supabase
+        .from('donations')
+        .select('payment_status')
+        .eq('paystack_reference', reference)
+        .single();
+
+      if (fetchError || !existingDonation) {
+        console.error('Donation not found:', reference, fetchError);
+        return new Response('Donation not found', { status: 404, headers: corsHeaders });
+      }
+
+      if (existingDonation.payment_status !== 'pending') {
+        console.warn('Donation already processed:', reference, existingDonation.payment_status);
+        return new Response('Donation already processed', { status: 200, headers: corsHeaders });
+      }
+      
       // Update donation status in database
       const { error } = await supabase
         .from('donations')
