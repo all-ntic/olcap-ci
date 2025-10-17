@@ -18,7 +18,7 @@ const donationSchema = z.object({
   ),
   amount: z.number().min(1000, "Minimum donation is 1000 XOF").max(10000000, "Maximum donation is 10,000,000 XOF"),
   message: z.string().max(1000).optional(),
-  campaign: z.enum(['general', 'cancer', 'education', 'health', 'emergency']).optional(),
+  campaign: z.enum(['general', 'anemia', 'cancer', 'poverty', 'october_rose']).optional(),
 });
 
 serve(async (req) => {
@@ -55,8 +55,7 @@ serve(async (req) => {
       console.error('Validation error:', validationResult.error.errors);
       return new Response(JSON.stringify({ 
         success: false,
-        error: 'Données invalides',
-        details: validationResult.error.errors[0].message
+        error: 'Données invalides. Veuillez vérifier vos informations.'
       }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -82,7 +81,7 @@ serve(async (req) => {
         amount: amountInKobo,
         currency: 'XOF', // CFA Franc
         reference: `OLCAP_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        callback_url: `${req.url.split('/functions')[0]}/don/success`,
+        callback_url: 'https://lceuznoxizqibnxazzge.supabase.co/don/success',
         metadata: {
           donor_name: name,
           donor_phone: phone || '',
@@ -141,7 +140,7 @@ serve(async (req) => {
     console.error('Error in paystack-donation function:', error);
     return new Response(JSON.stringify({ 
       success: false,
-      error: error.message 
+      error: 'Une erreur est survenue. Veuillez réessayer plus tard.' 
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

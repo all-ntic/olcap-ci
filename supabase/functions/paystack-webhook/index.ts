@@ -19,23 +19,26 @@ serve(async (req) => {
       throw new Error('PAYSTACK_SECRET_KEY is not set');
     }
 
-    // Verify Paystack signature
+    // Verify Paystack signature (MANDATORY)
     const signature = req.headers.get('x-paystack-signature');
     const body = await req.text();
     
-    if (signature) {
-      const hash = await crypto.subtle.digest(
-        'SHA-512',
-        new TextEncoder().encode(paystackSecretKey + body)
-      );
-      const expectedSignature = Array.from(new Uint8Array(hash))
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join('');
+    if (!signature) {
+      console.error('Missing Paystack signature');
+      return new Response('Unauthorized', { status: 401 });
+    }
+    
+    const hash = await crypto.subtle.digest(
+      'SHA-512',
+      new TextEncoder().encode(paystackSecretKey + body)
+    );
+    const expectedSignature = Array.from(new Uint8Array(hash))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
 
-      if (signature !== expectedSignature) {
-        console.error('Invalid Paystack signature');
-        return new Response('Invalid signature', { status: 400 });
-      }
+    if (signature !== expectedSignature) {
+      console.error('Invalid Paystack signature');
+      return new Response('Unauthorized', { status: 401 });
     }
 
     const event = JSON.parse(body);
@@ -75,9 +78,9 @@ serve(async (req) => {
 
   } catch (error) {
     console.error('Error in paystack-webhook function:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response('Internal Server Error', {
       status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: corsHeaders,
     });
   }
 });
