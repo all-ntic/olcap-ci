@@ -35,6 +35,10 @@ All colors MUST be HSL.
     --accent: 330 100% 70%;
     --accent-foreground: 0 0% 100%;
 
+    /* Pink Rose - Octobre Rose */
+    --pink-rose: 340 82% 52%;
+    --pink-rose-foreground: 0 0% 100%;
+
     /* Hope Orange (from logo) */
     --hope: 32 100% 55%;
     --hope-foreground: 0 0% 100%;
@@ -102,6 +106,9 @@ All colors MUST be HSL.
 
     --accent: 330 100% 75%;
     --accent-foreground: 0 0% 100%;
+
+    --pink-rose: 340 82% 60%;
+    --pink-rose-foreground: 0 0% 100%;
 
     --hope: 32 100% 60%;
     --hope-foreground: 0 0% 100%;

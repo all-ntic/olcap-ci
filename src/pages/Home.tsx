@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Users, Target, Award, ArrowRight, Stethoscope, HandHeart, ShieldCheck, Sparkles, TrendingUp, CheckCircle2 } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Heart, Users, Target, Award, ArrowRight, Stethoscope, HandHeart, ShieldCheck, Sparkles, TrendingUp, CheckCircle2, Ribbon } from "lucide-react";
 import { Link } from "react-router-dom";
 import olcapLogo from "@/assets/olcap-logo.jpg";
 import cancerAwareness from "@/assets/cancer-awareness.jpg";
@@ -43,6 +44,25 @@ const Home = () => {
 
   return (
     <div className="min-h-screen overflow-hidden">
+      {/* Octobre Rose Banner */}
+      <section className="relative py-4 bg-gradient-to-r from-pink-rose via-pink-rose/90 to-pink-rose overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent animate-shimmer" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <Alert className="border-white/30 bg-white/10 backdrop-blur-sm">
+            <Ribbon className="h-5 w-5 text-white" />
+            <AlertTitle className="text-white font-bold text-lg">Octobre Rose 2025 - Ensemble contre le cancer du sein</AlertTitle>
+            <AlertDescription className="text-white/95">
+              Rejoignez notre campagne de dépistage gratuit ce mois-ci. Ensemble, sauvons des vies ! 
+              <Link to="/projets" className="underline font-semibold ml-2 hover:text-white transition-colors">
+                Voir nos actions →
+              </Link>
+            </AlertDescription>
+          </Alert>
+        </div>
+      </section>
+
       {/* Hero Section with Advanced Effects */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         {/* Animated Background */}
@@ -283,6 +303,98 @@ const Home = () => {
                 <CheckCircle2 className="w-5 h-5 text-primary" />
                 <span>Impact mesurable</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Octobre Rose Section */}
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-pink-rose/5 via-background to-accent/5">
+        <div className="absolute inset-0 opacity-5">
+          {[...Array(15)].map((_, i) => (
+            <Ribbon
+              key={i}
+              className="absolute text-pink-rose"
+              style={{
+                width: `${Math.random() * 40 + 20}px`,
+                height: `${Math.random() * 40 + 20}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                transform: `rotate(${Math.random() * 360}deg)`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-pink-rose/10 border border-pink-rose/30 mb-6">
+              <Ribbon className="w-5 h-5 text-pink-rose" />
+              <span className="text-sm font-semibold text-pink-rose">Octobre Rose 2025</span>
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-extrabold mb-6">
+              <span className="bg-gradient-to-r from-pink-rose via-accent to-pink-rose bg-clip-text text-transparent">
+                Mobilisons-nous contre le cancer du sein
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Chaque année, des milliers de femmes sont touchées par le cancer du sein. 
+              Ensemble, sensibilisons, dépistons et soutenons les femmes dans leur combat.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <Card className="card-hover border-pink-rose/20 bg-gradient-to-br from-white to-pink-rose/5">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-rose to-accent flex items-center justify-center mb-6 mx-auto">
+                  <Ribbon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-center mb-4">Dépistage gratuit</h3>
+                <p className="text-muted-foreground text-center leading-relaxed">
+                  Participez à nos campagnes de dépistage gratuit dans les églises, écoles et mairies de toute la Côte d'Ivoire.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="card-hover border-pink-rose/20 bg-gradient-to-br from-white to-pink-rose/5">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-rose to-accent flex items-center justify-center mb-6 mx-auto">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-center mb-4">Sensibilisation</h3>
+                <p className="text-muted-foreground text-center leading-relaxed">
+                  60 sensibilisateurs formés au CHU Treichville pour éduquer et informer les communautés sur la prévention.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="card-hover border-pink-rose/20 bg-gradient-to-br from-white to-pink-rose/5">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-rose to-accent flex items-center justify-center mb-6 mx-auto">
+                  <HandHeart className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-center mb-4">Soutien aux femmes</h3>
+                <p className="text-muted-foreground text-center leading-relaxed">
+                  Accompagnement psychologique et matériel des femmes atteintes, en partenariat avec PIF-CI.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <div className="inline-flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="bg-gradient-to-r from-pink-rose to-accent hover:from-pink-rose/90 hover:to-accent/90 text-white text-lg h-14 px-8 shadow-lg" asChild>
+                <Link to="/don">
+                  <Heart className="w-5 h-5 mr-2" />
+                  Soutenir Octobre Rose
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" className="border-2 border-pink-rose text-pink-rose hover:bg-pink-rose/10 text-lg h-14 px-8" asChild>
+                <Link to="/contact">
+                  Participer aux campagnes
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
