@@ -123,11 +123,12 @@ const Chatbot = () => {
                 className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
               >
                 <div
-                  className={`max-w-[80%] p-3 rounded-lg text-sm ${
+                  className={`max-w-[80%] p-3 rounded-lg text-sm break-words ${
                     message.isBot
                       ? 'bg-muted text-foreground'
                       : 'bg-primary text-primary-foreground'
                   }`}
+                  style={{ overflowWrap: 'break-word', wordBreak: 'break-word' }}
                 >
                   {message.text}
                 </div>
