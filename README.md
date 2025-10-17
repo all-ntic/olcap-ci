@@ -1,73 +1,249 @@
-# Welcome to your Lovable project
+# OLCAP-CI - Site Web Officiel
 
-## Project info
+![OLCAP-CI Logo](src/assets/olcap-logo.jpg)
 
-**URL**: https://lovable.dev/projects/c25f6ad4-b75d-4901-accc-e85d0d4cf9a1
+## 📋 À propos
 
-## How can I edit this code?
+Site web officiel de l'ONG **OLCAP-CI** (Organisation de Lutte Contre l'Anémie et la Pauvreté en Côte d'Ivoire), une organisation non gouvernementale dédiée à la lutte contre l'anémie, la pauvreté, l'analphabétisme, et les cancers du sein et du col de l'utérus.
 
-There are several ways of editing your application.
+## 🎯 Mission
 
-**Use Lovable**
+Améliorer la santé et le bien-être des populations ivoiriennes à travers :
+- La sensibilisation et le dépistage des cancers féminins
+- La lutte contre l'anémie
+- La promotion de l'éducation sanitaire
+- Le soutien aux populations vulnérables
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c25f6ad4-b75d-4901-accc-e85d0d4cf9a1) and start prompting.
+## 🌟 Fonctionnalités
 
-Changes made via Lovable will be committed automatically to this repo.
+### 💳 Système de Dons Sécurisés
+- Intégration **Paystack** pour les paiements en ligne
+- Formulaire de don sécurisé avec validation
+- Confirmation par email (Resend)
+- Suivi des transactions en temps réel
+- Stockage sécurisé dans Supabase avec RLS activé
 
-**Use your preferred IDE**
+### 🤖 Chatbot Intelligent
+- Chatbot alimenté par **OpenAI GPT-4.0-mini**
+- Système RAG (Retrieval-Augmented Generation) pour des réponses rapides
+- Base de connaissances préchargée avec 12+ FAQ
+- Incitation aux dons et contact WhatsApp
+- Réponses contextuelles sur la mission et les actions de l'ONG
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 📞 Contact Direct
+- Bouton **WhatsApp** flottant pour contact instantané
+- Formulaire de contact intégré
+- Informations de contact accessibles
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### ❓ FAQ Interactive
+- Section FAQ avec recherche en temps réel
+- Filtres par catégorie (Général, Santé, Dons, Bénévolat)
+- 10 questions-réponses détaillées
+- Interface moderne avec icônes et tags
 
-Follow these steps:
+### 📱 Design Responsive
+- Interface adaptative mobile-first
+- Animations et transitions fluides
+- Design moderne avec Tailwind CSS
+- Thème cohérent avec tokens CSS personnalisés
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🛠️ Technologies Utilisées
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Frontend
+- **React 18.3.1** - Framework JavaScript
+- **TypeScript** - Typage statique
+- **Vite** - Build tool et dev server
+- **Tailwind CSS** - Framework CSS utility-first
+- **shadcn/ui** - Composants UI réutilisables
+- **React Router DOM** - Navigation SPA
+- **React Query** - Gestion d'état et cache
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Backend & Services
+- **Supabase** - Backend as a Service
+  - Base de données PostgreSQL
+  - Edge Functions (Deno)
+  - Authentification
+  - Row Level Security (RLS)
+- **OpenAI API** - Intelligence artificielle (GPT-4.0-mini)
+- **Paystack** - Passerelle de paiement
+- **Resend** - Service d'envoi d'emails
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Bibliothèques Principales
+- **@supabase/supabase-js** - Client Supabase
+- **@tanstack/react-query** - Gestion des requêtes
+- **lucide-react** - Icônes
+- **react-hook-form** - Gestion des formulaires
+- **zod** - Validation de schémas
+- **sonner** - Notifications toast
+- **class-variance-authority** - Gestion des variants CSS
+
+## 📦 Installation
+
+### Prérequis
+- **Node.js** >= 18.x
+- **npm** ou **bun**
+- Un projet **Supabase** configuré
+- Clés API pour :
+  - OpenAI
+  - Paystack
+  - Resend (optionnel)
+
+### Étapes d'installation
+
+1. **Cloner le repository**
+```bash
+git clone <URL_DU_REPO>
+cd olcap-ci
 ```
 
-**Edit a file directly in GitHub**
+2. **Installer les dépendances**
+```bash
+npm install
+# ou
+bun install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. **Configurer les variables d'environnement**
 
-**Use GitHub Codespaces**
+Créer un fichier `.env` à la racine :
+```env
+VITE_SUPABASE_URL=https://lceuznoxizqibnxazzge.supabase.co
+VITE_SUPABASE_ANON_KEY=votre_anon_key
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+4. **Configurer les secrets Supabase**
 
-## What technologies are used for this project?
+Dans votre projet Supabase, ajouter les secrets suivants (Settings > Edge Functions > Secrets) :
+```
+OPENAI_API_KEY=sk-...
+PAYSTACK_SECRET_KEY=sk_...
+PAYSTACK_PUBLIC_KEY=pk_...
+RESEND_API_KEY=re_...
+```
 
-This project is built with:
+5. **Déployer les Edge Functions**
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Les Edge Functions sont déployées automatiquement via Lovable. Les fonctions disponibles :
+- `olcap-chatbot` - Gestion du chatbot IA
+- `paystack-donation` - Initialisation des dons
+- `paystack-webhook` - Webhooks Paystack
 
-## How can I deploy this project?
+6. **Lancer le serveur de développement**
+```bash
+npm run dev
+# ou
+bun dev
+```
 
-Simply open [Lovable](https://lovable.dev/projects/c25f6ad4-b75d-4901-accc-e85d0d4cf9a1) and click on Share -> Publish.
+L'application sera accessible sur `http://localhost:8080`
 
-## Can I connect a custom domain to my Lovable project?
+## 🗂️ Structure du Projet
 
-Yes, you can!
+```
+olcap-ci/
+├── public/
+│   ├── robots.txt
+│   └── favicon.ico
+├── src/
+│   ├── assets/              # Images et ressources
+│   ├── components/          # Composants React
+│   │   ├── Layout/          # Header, Footer, Layout
+│   │   ├── FAQ/             # Section FAQ
+│   │   ├── ui/              # Composants shadcn/ui
+│   │   ├── Chatbot.tsx      # Chatbot IA
+│   │   └── WhatsAppButton.tsx
+│   ├── hooks/               # Custom hooks
+│   ├── integrations/        # Intégrations externes
+│   │   └── supabase/
+│   ├── lib/                 # Utilitaires
+│   ├── pages/               # Pages de l'application
+│   │   ├── Home.tsx
+│   │   ├── Mission.tsx
+│   │   ├── Projets.tsx
+│   │   ├── Contact.tsx
+│   │   ├── Don.tsx
+│   │   └── ...
+│   ├── App.tsx              # Composant racine
+│   ├── main.tsx             # Point d'entrée
+│   └── index.css            # Styles globaux
+├── supabase/
+│   ├── functions/           # Edge Functions
+│   │   ├── olcap-chatbot/
+│   │   ├── paystack-donation/
+│   │   └── paystack-webhook/
+│   └── config.toml          # Configuration Supabase
+└── package.json
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🚀 Déploiement
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### Avec Lovable
+1. Ouvrir le projet dans [Lovable](https://lovable.dev)
+2. Cliquer sur **Publish** dans le coin supérieur droit
+3. Le site sera déployé automatiquement
+
+### Avec Vercel/Netlify
+```bash
+# Build de production
+npm run build
+
+# Le dossier dist/ contient les fichiers statiques
+```
+
+## 🔒 Sécurité
+
+- **RLS (Row Level Security)** activé sur toutes les tables Supabase
+- Validation des données côté serveur et client (Zod)
+- Secrets stockés dans l'environnement Supabase
+- HTTPS forcé en production
+- CORS configuré sur les Edge Functions
+
+## 📊 Base de Données
+
+### Tables Principales
+- `donations` - Transactions de dons
+  - Champs : id, donor_name, email, amount, status, reference, etc.
+  - RLS : Lecture publique, écriture via Edge Function
+
+## 🌐 Pages Disponibles
+
+- `/` - Page d'accueil
+- `/mission` - Notre mission
+- `/equipe` - Notre équipe
+- `/projets` - Nos projets
+- `/contact` - Nous contacter
+- `/don` - Faire un don
+- `/don/success` - Confirmation de don
+- `/mentions-legales` - Mentions légales
+
+## 📞 Contact
+
+- **Adresse** : Ananeraie, Yopougon, Abidjan – Côte d'Ivoire
+- **Téléphones** : 
+  - +225 01 51 83 82 82
+  - +225 05 95 20 33 72
+- **Email** : olcapcin@gmail.com
+- **WhatsApp** : +225 01 51 83 82 82
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! Pour contribuer :
+1. Fork le projet
+2. Créer une branche (`git checkout -b feature/amelioration`)
+3. Commit les changements (`git commit -m 'Ajout fonctionnalité'`)
+4. Push vers la branche (`git push origin feature/amelioration`)
+5. Ouvrir une Pull Request
+
+## 📝 Licence
+
+Ce projet est développé pour l'ONG OLCAP-CI. Tous droits réservés.
+
+## 🙏 Remerciements
+
+- Équipe OLCAP-CI
+- Communauté Lovable
+- Contributeurs open-source
+
+---
+
+**Développé avec ❤️ pour améliorer la santé en Côte d'Ivoire**
