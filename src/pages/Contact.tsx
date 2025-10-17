@@ -104,7 +104,7 @@ const Contact = () => {
 
       const validatedData = validationResult.data;
 
-      const { error } = await supabase.from('contact_messages').insert([
+      const { error } = await supabase.from('OLCAP-CI_message').insert([
         {
           name: validatedData.name,
           email: validatedData.email,
