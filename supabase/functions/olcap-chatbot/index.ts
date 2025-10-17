@@ -11,7 +11,7 @@ const knowledgeBase = {
   faq: [
     {
       keywords: ["olcap", "ong", "organisation", "c'est quoi", "qu'est-ce"],
-      answer: "OLCAP-CI (Organisation pour la Lutte Contre l'Anémie et la Pauvreté en Côte d'Ivoire) est une ONG ivoirienne créée pour améliorer la santé et le bien-être des populations vulnérables. Nous luttons activement contre l'anémie, la pauvreté, l'analphabétisme et sensibilisons sur les cancers du sein et du col de l'utérus. 💚"
+      answer: "OLCAP-CI (Organisation pour la Lutte Contre l'Anémie et la Pauvreté en Côte d'Ivoire) est une ONG ivoirienne créée pour améliorer la santé et le bien-être des populations vulnérables. Nous luttons activement contre l'anémie, la pauvreté, l'analphabétisme et sensibilisons sur les cancers du sein et du col de l'utérus. 💚\n\n💝 Vous pouvez nous soutenir en faisant un don ou nous contacter sur WhatsApp pour en savoir plus !"
     },
     {
       keywords: ["situé", "adresse", "localisation", "où", "yopougon", "contact"],
@@ -31,11 +31,11 @@ const knowledgeBase = {
     },
     {
       keywords: ["anémie", "dépistage", "test", "fer", "complément"],
-      answer: "Notre programme contre l'anémie comprend :\n\n🎯 Sensibilisation dans écoles et communautés\n🔬 Dépistages gratuits avec kits de test rapide\n💊 Distribution de compléments alimentaires et fer\n🏥 Orientation vers structures de santé partenaires\n👨‍🏫 Formation de sensibilisateurs communautaires\n\nEnsemble, luttons contre l'anémie !"
+      answer: "Notre programme contre l'anémie comprend :\n\n🎯 Sensibilisation dans écoles et communautés\n🔬 Dépistages gratuits avec kits de test rapide\n💊 Distribution de compléments alimentaires et fer\n🏥 Orientation vers structures de santé partenaires\n👨‍🏫 Formation de sensibilisateurs communautaires\n\n💝 Votre don peut sauver des vies ! Soutenez notre action contre l'anémie."
     },
     {
       keywords: ["octobre rose", "cancer", "sein", "col utérus", "dépistage cancer"],
-      answer: "Oui ! Octobre Rose est un temps fort pour OLCAP-CI ! 🎀\n\nNos actions :\n📻 Émissions radio de sensibilisation\n⛪ Sessions dans églises et écoles\n🔬 Dépistages GRATUITS (sein & col de l'utérus)\n👨‍⚕️ 60 sensibilisateurs formés au CHU Treichville\n🤝 Partenariat avec PIF-CI\n\nRejoignez-nous en octobre !"
+      answer: "Oui ! Octobre Rose est un temps fort pour OLCAP-CI ! 🎀\n\nNos actions :\n📻 Émissions radio de sensibilisation\n⛪ Sessions dans églises et écoles\n🔬 Dépistages GRATUITS (sein & col de l'utérus)\n👨‍⚕️ 60 sensibilisateurs formés au CHU Treichville\n🤝 Partenariat avec PIF-CI\n\n💝 Aidez-nous à sauver plus de vies avec votre don ! Contactez-nous sur WhatsApp pour participer."
     },
     {
       keywords: ["téléconsultation", "consultation", "médecin", "soins", "santé"],
@@ -54,8 +54,16 @@ const knowledgeBase = {
       answer: "Nos missions principales :\n\n🩸 Lutte contre l'anémie (causes, détection, correction, prévention)\n💰 Lutte contre la pauvreté\n📚 Lutte contre l'analphabétisme\n🎀 Sensibilisation cancers du sein et col de l'utérus\n\nNos valeurs : Santé, Solidarité, Prévention, Éducation, Espoir 💚"
     },
     {
-      keywords: ["partenariat", "collaboration", "partenaire", "accord"],
-      answer: "OLCAP-CI collabore avec :\n\n🏥 CHU de Treichville (formations)\n🤝 PIF-CI (accord-cadre cancers féminins)\n⛪ Églises pour sensibilisations\n🏫 Écoles et mairies\n🏢 Municipalités et autres ONG santé\n\nIntéressé par un partenariat ? Contactez-nous ! 🤝"
+      keywords: ["mission", "objectif", "valeur", "vision"],
+      answer: "Nos missions principales :\n\n🩸 Lutte contre l'anémie (causes, détection, correction, prévention)\n💰 Lutte contre la pauvreté\n📚 Lutte contre l'analphabétisme\n🎀 Sensibilisation cancers du sein et col de l'utérus\n\nNos valeurs : Santé, Solidarité, Prévention, Éducation, Espoir 💚\n\n💝 Chaque don compte ! Ensemble, changeons des vies."
+    },
+    {
+      keywords: ["merci", "remerciement", "bravo", "félicitation", "super", "génial"],
+      answer: "Merci beaucoup pour votre intérêt ! 🙏💚\n\nVotre soutien est précieux. Vous pouvez :\n💝 Faire un don pour soutenir nos actions\n💬 Nous contacter sur WhatsApp pour en savoir plus\n👥 Devenir bénévole ou ambassadeur\n\nEnsemble, nous sommes plus forts !"
+    },
+    {
+      keywords: ["bonjour", "salut", "coucou", "hello", "hey"],
+      answer: "Bonjour ! 👋😊\n\nBienvenue chez OLCAP-CI ! Nous luttons pour la santé et le bien-être en Côte d'Ivoire.\n\nComment puis-je vous aider aujourd'hui ?\n\n💝 N'hésitez pas à faire un don ou nous contacter sur WhatsApp !"
     }
   ]
 };
@@ -133,13 +141,17 @@ Tu dois:
 1. Répondre en français de manière chaleureuse, empathique et professionnelle
 2. Fournir des informations précises sur OLCAP-CI
 3. Utiliser des emojis pour rendre les réponses plus vivantes et engageantes
-4. Orienter vers /don pour les dons
-5. Orienter vers /contact pour plus d'infos ou bénévolat
-6. Promouvoir l'engagement communautaire
-7. Être concis mais informatif (max 150 mots)
-8. Encourager l'action et la solidarité
+4. **IMPORTANT: Toujours terminer tes réponses en encourageant soit:**
+   - 💝 "Vous pouvez nous soutenir en faisant un don pour cette cause !"
+   - 💬 "N'hésitez pas à nous contacter sur WhatsApp pour en savoir plus !"
+   - OU les deux quand c'est pertinent
+5. Être concis mais informatif (max 120 mots)
+6. Encourager l'action et la solidarité
+7. Mentionner les pages /don et /contact quand approprié
 
-Si on te pose une question sur quelque chose que tu ne sais pas, invite gentiment la personne à nous contacter directement.`;
+**RÈGLE D'OR**: Chaque réponse doit inclure un appel à l'action (don ou WhatsApp) de manière naturelle et appropriée au contexte.
+
+Si on te pose une question sur quelque chose que tu ne sais pas, invite gentiment la personne à nous contacter sur WhatsApp au +225 01 51 83 82 82 ou faire un don pour soutenir nos actions.`;
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',

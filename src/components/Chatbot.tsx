@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bot, X, Send } from "lucide-react";
+import { Bot, X, Send, Heart, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,6 +10,7 @@ interface Message {
   text: string;
   isBot: boolean;
   timestamp: Date;
+  showActions?: boolean;
 }
 
 const Chatbot = () => {
@@ -19,7 +20,8 @@ const Chatbot = () => {
       id: 1,
       text: "Bonjour ! Je suis l'assistant virtuel d'OLCAP-CI. Comment puis-je vous aider aujourd'hui ?",
       isBot: true,
-      timestamp: new Date()
+      timestamp: new Date(),
+      showActions: true
     }
   ]);
   const [inputMessage, setInputMessage] = useState("");
@@ -29,8 +31,7 @@ const Chatbot = () => {
     "Qu'est-ce que l'OLCAP-CI ?",
     "Comment faire un don ?",
     "Vos actions contre l'anémie",
-    "Octobre Rose 2024",
-    "Comment devenir bénévole ?"
+    "Octobre Rose 2024"
   ];
 
   const sendMessage = async (text: string) => {
@@ -55,11 +56,18 @@ const Chatbot = () => {
       if (error) throw error;
 
       // Add bot response
+      const shouldShowActions = 
+        data.reply.toLowerCase().includes('don') ||
+        data.reply.toLowerCase().includes('contact') ||
+        data.reply.toLowerCase().includes('whatsapp') ||
+        data.reply.toLowerCase().includes('aider');
+
       const botMessage: Message = {
         id: Date.now() + 1,
         text: data.reply || "Désolé, je n'ai pas pu traiter votre demande. Veuillez réessayer.",
         isBot: true,
-        timestamp: new Date()
+        timestamp: new Date(),
+        showActions: shouldShowActions
       };
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
@@ -83,6 +91,14 @@ const Chatbot = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     sendMessage(inputMessage);
+  };
+
+  const handleDonateClick = () => {
+    window.location.href = '/don';
+  };
+
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/22501518382?text=Bonjour%20OLCAP-CI%20!', '_blank');
   };
 
   if (!isOpen) {
@@ -118,25 +134,46 @@ const Chatbot = () => {
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
-              >
-                <div
-                  className={`max-w-[85%] p-3 rounded-lg text-sm ${
-                    message.isBot
-                      ? 'bg-muted text-foreground'
-                      : 'bg-primary text-primary-foreground'
-                  }`}
-                  style={{ 
-                    wordWrap: 'break-word',
-                    overflowWrap: 'break-word',
-                    wordBreak: 'break-word',
-                    hyphens: 'auto'
-                  }}
-                >
-                  <div className="whitespace-pre-wrap">{message.text}</div>
+              <div key={message.id}>
+                <div className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}>
+                  <div
+                    className={`max-w-[85%] p-3 rounded-lg text-sm ${
+                      message.isBot
+                        ? 'bg-muted text-foreground'
+                        : 'bg-primary text-primary-foreground'
+                    }`}
+                    style={{ 
+                      wordWrap: 'break-word',
+                      overflowWrap: 'break-word',
+                      wordBreak: 'break-word',
+                      hyphens: 'auto'
+                    }}
+                  >
+                    <div className="whitespace-pre-wrap">{message.text}</div>
+                  </div>
                 </div>
+                
+                {/* Action buttons for bot messages */}
+                {message.isBot && message.showActions && (
+                  <div className="flex gap-2 mt-2 ml-2">
+                    <Button
+                      size="sm"
+                      onClick={handleDonateClick}
+                      className="bg-primary hover:bg-primary/90 text-white text-xs h-8 px-3"
+                    >
+                      <Heart className="w-3 h-3 mr-1" />
+                      Faire un don
+                    </Button>
+                    <Button
+                      size="sm"
+                      onClick={handleWhatsAppClick}
+                      className="bg-[#25D366] hover:bg-[#20b858] text-white text-xs h-8 px-3"
+                    >
+                      <MessageCircle className="w-3 h-3 mr-1" />
+                      WhatsApp
+                    </Button>
+                  </div>
+                )}
               </div>
             ))}
             {isLoading && (
