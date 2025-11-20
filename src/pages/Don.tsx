@@ -55,9 +55,9 @@ const Don = () => {
 
   useEffect(() => {
     updateSEO({
-      title: "Faire un Don | OLCAP-CI - Soutenez Nos Actions en Côte d'Ivoire",
-      description: "Soutenez l'OLCAP-CI avec un don sécurisé via Paystack. Chaque contribution aide à financer nos programmes de santé et de lutte contre la pauvreté.",
-      keywords: "don OLCAP, donation ONG Côte d'Ivoire, soutenir santé Abidjan, don sécurisé Paystack, aide humanitaire",
+      title: "Faire un don – Soutenez OLCAP-CI",
+      description: "Contribuez à la lutte contre l'anémie et la pauvreté en Côte d'Ivoire en faisant un don sécurisé. Paiement 100% sécurisé via Paystack.",
+      keywords: "faire un don OLCAP-CI, donation sécurisée, soutenir ONG Côte d'Ivoire, don Paystack, aide humanitaire Abidjan",
       canonical: "https://olcap-ci.allntic.online/don",
       ogType: "website"
     });
@@ -153,23 +153,31 @@ const Don = () => {
   };
 
   const features = [
-    { icon: Shield, text: "Paiement 100% sécurisé via Paystack" },
-    { icon: Check, text: "Reçu fiscal délivré automatiquement" },
-    { icon: Heart, text: "Impact direct sur nos missions de santé" }
+    { icon: Shield, text: "Paiement 100% sécurisé via Paystack (certifié PCI DSS)" },
+    { icon: Check, text: "Reçu fiscal délivré automatiquement par email" },
+    { icon: CreditCard, text: "Aucune donnée bancaire stockée sur nos serveurs" },
+    { icon: Heart, text: "Impact direct et mesurable sur nos missions de santé" }
   ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-background to-accent/5 py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-              Faire un Don
+      <section className="relative bg-gradient-to-br from-primary/10 via-background to-secondary/5 py-24">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-3xl animate-pulse-soft" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/20 shimmer">
+              <Heart className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium">Solidarité & Espoir</span>
+            </div>
+            <h1 className="text-5xl lg:text-6xl font-bold">
+              <span className="text-gradient">Votre soutien change des vies</span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Votre générosité nous permet de sauver des vies et d'améliorer la santé 
-              de milliers de personnes en Côte d'Ivoire
+            <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              Votre contribution permet de sauver des vies et d'améliorer durablement les conditions de vie 
+              des familles vulnérables. Chaque don compte dans la lutte contre l'anémie et la pauvreté en Côte d'Ivoire.
             </p>
           </div>
         </div>
@@ -179,11 +187,12 @@ const Don = () => {
       <section className="py-16 bg-muted/20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Votre Impact
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              Votre soutien change des vies
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Découvrez comment votre don transforme des vies
+            <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
+              Chaque don contribue directement à nos actions de lutte contre l'anémie et la pauvreté. 
+              Découvrez l'impact concret de votre générosité.
             </p>
           </div>
 
