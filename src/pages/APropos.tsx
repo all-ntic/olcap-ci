@@ -1,15 +1,17 @@
 import { useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Heart, Target, Users, TrendingUp, Award, Globe } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Heart, Target, Users, Shield, BookOpen, Lightbulb, ArrowRight, CheckCircle2, Award, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
 import { updateSEO, addStructuredData, organizationSchema } from "@/utils/seo";
+import olcapLogo from "@/assets/olcap-logo.jpg";
 
 const APropos = () => {
   useEffect(() => {
     updateSEO({
-      title: "À Propos de l'OLCAP-CI | Notre Mission et Nos Valeurs",
-      description: "Découvrez l'histoire, la mission et les valeurs de l'OLCAP-CI. Organisation engagée depuis 2020 dans la lutte contre l'anémie, la pauvreté et les cancers féminins en Côte d'Ivoire.",
-      keywords: "OLCAP-CI à propos, ONG Côte d'Ivoire, mission OLCAP, valeurs santé, lutte anémie Abidjan, histoire ONG ivoirienne",
+      title: "À propos d'OLCAP-CI – ONG humanitaire en Côte d'Ivoire",
+      description: "Découvrez l'histoire, les valeurs et la mission d'OLCAP-CI, ONG engagée contre l'anémie et la pauvreté en Côte d'Ivoire.",
+      keywords: "OLCAP-CI à propos, ONG Côte d'Ivoire, mission OLCAP, histoire ONG ivoirienne, valeurs organisation humanitaire, anémie pauvreté Abidjan",
       canonical: "https://olcap-ci.allntic.online/a-propos",
       ogType: "website"
     });
@@ -34,171 +36,221 @@ const APropos = () => {
     addStructuredData(breadcrumbSchema);
   }, []);
 
+  const values = [
+    {
+      icon: Heart,
+      title: "Santé",
+      description: "Nous plaçons la santé au cœur de nos actions pour améliorer le bien-être des populations vulnérables.",
+      color: "from-primary to-primary-glow"
+    },
+    {
+      icon: Users,
+      title: "Solidarité",
+      description: "L'entraide et le soutien mutuel guident nos interventions auprès des communautés.",
+      color: "from-secondary to-blue-500"
+    },
+    {
+      icon: Shield,
+      title: "Prévention",
+      description: "Agir en amont pour éviter les maladies et améliorer la qualité de vie.",
+      color: "from-accent to-pink-500"
+    },
+    {
+      icon: BookOpen,
+      title: "Éducation",
+      description: "Former et sensibiliser pour un changement durable dans les comportements de santé.",
+      color: "from-hope to-orange-500"
+    },
+    {
+      icon: Lightbulb,
+      title: "Espoir",
+      description: "Apporter de l'espoir et des solutions concrètes aux familles en difficulté.",
+      color: "from-primary to-secondary"
+    }
+  ];
+
+  const achievements = [
+    { icon: CheckCircle2, text: "Fondée en 2020 pour servir les communautés vulnérables" },
+    { icon: CheckCircle2, text: "Interventions dans 12 zones de Côte d'Ivoire" },
+    { icon: CheckCircle2, text: "Partenariats avec organisations locales et internationales" },
+    { icon: CheckCircle2, text: "Formation de sensibilisateurs communautaires qualifiés" },
+  ];
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-background to-secondary/20">
+    <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10">
-        <div className="container mx-auto max-w-4xl text-center">
-          <Badge className="mb-4 text-lg px-6 py-2">Notre Histoire</Badge>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-            À Propos de l'OLCAP-CI
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Organisation pour la Lutte Contre l'Anémie et la Pauvreté en Côte d'Ivoire
-          </p>
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-3xl animate-pulse-soft" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '1s' }} />
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/20 shimmer">
+              <Heart className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium">Notre Histoire</span>
+            </div>
+
+            <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+              <span className="text-gradient">Qui sommes-nous ?</span>
+            </h1>
+
+            <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              <strong className="text-foreground">OLCAP-CI</strong> est une organisation à but non lucratif fondée pour combattre l'anémie, 
+              la malnutrition et la pauvreté en Côte d'Ivoire. 
+              Nous travaillons avec les communautés, écoles, femmes enceintes et populations rurales 
+              pour renforcer la prévention et l'accès à une alimentation équilibrée.
+            </p>
+
+            <div className="flex justify-center">
+              <img 
+                src={olcapLogo} 
+                alt="Logo OLCAP-CI - Organisation de lutte contre l'anémie et la pauvreté" 
+                className="w-32 h-32 rounded-2xl shadow-2xl ring-4 ring-primary/20"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Notre Mission</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Améliorer la santé et le bien-être des populations vulnérables en Côte d'Ivoire
+      {/* Mission & Vision Section */}
+      <section className="py-24 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <Card className="glass border-primary/20 overflow-hidden group hover-scale">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <CardContent className="p-8 relative">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary-glow mb-6 shimmer">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold mb-4">Notre Mission</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Améliorer la santé, l'alimentation et les conditions de vie des familles les plus touchées 
+                  par l'anémie et la pauvreté à travers des actions concrètes de sensibilisation, 
+                  prévention, dépistage et accompagnement communautaire.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass border-secondary/20 overflow-hidden group hover-scale">
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <CardContent className="p-8 relative">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary to-blue-500 mb-6 shimmer">
+                  <Award className="w-8 h-8 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold mb-4">Notre Vision</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Devenir une référence nationale dans la lutte contre l'anémie, la malnutrition et la pauvreté 
+                  en Côte d'Ivoire, en offrant des solutions durables, accessibles et adaptées aux besoins 
+                  des populations vulnérables.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 fade-in-up">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4">Nos Valeurs</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Les principes qui guident notre action au quotidien
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="card-hover">
-              <CardHeader>
-                <Target className="h-12 w-12 text-primary mb-4" />
-                <CardTitle className="text-2xl">Notre Vision</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">
-                  Devenir une référence nationale dans la lutte contre l'anémie, la pauvreté et les cancers féminins, 
-                  en offrant des solutions durables et accessibles à tous.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Nous aspirons à une Côte d'Ivoire où chaque citoyen a accès à des soins de santé de qualité 
-                  et à des opportunités économiques équitables.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="card-hover">
-              <CardHeader>
-                <Heart className="h-12 w-12 text-pink-rose mb-4" />
-                <CardTitle className="text-2xl">Nos Valeurs</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <Heart className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <strong>Solidarité :</strong> Nous croyons en l'entraide et le soutien mutuel
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Target className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <strong>Santé pour tous :</strong> Accès équitable aux soins médicaux
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Users className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <strong>Prévention :</strong> Mieux vaut prévenir que guérir
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <TrendingUp className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <strong>Éducation :</strong> Sensibilisation et formation continue
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Award className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <strong>Espoir :</strong> Offrir un avenir meilleur aux plus vulnérables
-                    </div>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {values.map((value, index) => (
+              <Card 
+                key={index}
+                className="card-hover group border-0 shadow-xl overflow-hidden"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
+                <CardContent className="p-8 relative">
+                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${value.color} mb-6 shimmer`}>
+                    <value.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{value.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{value.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Histoire Section */}
-      <section className="py-16 px-4 bg-secondary/20">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Notre Histoire</h2>
-          
-          <Card className="card-hover">
-            <CardContent className="p-8 space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                  <Globe className="h-6 w-6 text-primary" />
-                  Fondation et Origine
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  L'OLCAP-CI a été fondée en 2020 avec la conviction profonde qu'il est possible de transformer 
-                  des vies en s'attaquant aux problèmes de santé publique les plus urgents en Côte d'Ivoire. 
-                  Née d'une volonté collective de médecins, d'infirmiers et de bénévoles passionnés, notre organisation 
-                  s'est donnée pour mission de lutter contre l'anémie, la pauvreté et les cancers féminins.
-                </p>
-              </div>
+      {/* Achievements Section */}
+      <section className="py-24 bg-gradient-to-b from-muted/30 to-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4">Nos Réalisations</h2>
+              <p className="text-lg text-muted-foreground">
+                Un engagement concret depuis notre création
+              </p>
+            </div>
 
-              <div>
-                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                  <TrendingUp className="h-6 w-6 text-primary" />
-                  Notre Évolution
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Depuis notre création, nous avons formé <strong>60 sensibilisateurs</strong> au CHU de Treichville, 
-                  réalisé des dizaines de campagnes de dépistage gratuit dans les églises, écoles et mairies, 
-                  et établi des partenariats solides avec des institutions publiques et privées.
-                </p>
-                <p className="text-muted-foreground leading-relaxed mt-3">
-                  Chaque année, nous participons activement à <strong>Octobre Rose</strong>, organisant des 
-                  émissions radio et des campagnes locales pour sensibiliser aux cancers du sein et du col de l'utérus.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                  <Users className="h-6 w-6 text-primary" />
-                  Notre Impact
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  À travers nos programmes de sensibilisation, de dépistage et de prévention, nous avons touché 
-                  des milliers de personnes, sauvé des vies et apporté de l'espoir aux communautés les plus vulnérables.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+            <div className="grid md:grid-cols-2 gap-6">
+              {achievements.map((achievement, idx) => (
+                <div 
+                  key={idx}
+                  className="flex items-start gap-4 p-6 rounded-xl glass border border-primary/10 hover:border-primary/30 transition-all hover-scale"
+                  style={{ animationDelay: `${idx * 0.1}s` }}
+                >
+                  <achievement.icon className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
+                  <p className="text-lg">{achievement.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Partenariats */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Nos Partenaires</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Nous collaborons avec des institutions publiques, des ONG et des acteurs de la santé pour maximiser notre impact.
-          </p>
-          <Card className="card-hover">
-            <CardContent className="p-8">
-              <ul className="space-y-3 text-left">
-                <li className="flex items-center gap-3">
-                  <Award className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span><strong>PIF-CI</strong> : Accord-cadre pour la lutte contre les cancers féminins</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Award className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span><strong>CHU de Treichville</strong> : Formation de sensibilisateurs</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Award className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span><strong>Municipalités locales</strong> : Campagnes de dépistage communautaires</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Award className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span><strong>Associations locales</strong> : Sensibilisation et prévention</span>
-                </li>
-              </ul>
+      {/* CTA Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary rounded-full blur-3xl animate-pulse-soft" />
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '1s' }} />
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <Card className="glass border-primary/20 shadow-2xl overflow-hidden max-w-4xl mx-auto">
+            <CardContent className="p-12 lg:p-16">
+              <div className="text-center space-y-8">
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary-glow mb-6 shimmer">
+                  <TrendingUp className="w-10 h-10 text-white animate-pulse-soft" />
+                </div>
+                
+                <h2 className="text-4xl lg:text-5xl font-bold">
+                  Rejoignez notre mission
+                </h2>
+                
+                <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+                  Ensemble, nous pouvons faire la différence dans la lutte contre l'anémie et la pauvreté. 
+                  Votre soutien permet de sauver des vies et d'améliorer durablement les conditions de vie des familles vulnérables.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
+                  <Link to="/don">
+                    <Button size="lg" className="group shadow-elegant hover-scale">
+                      <Heart className="mr-2 w-5 h-5" />
+                      Faire un don
+                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                  
+                  <Link to="/projets">
+                    <Button variant="outline" size="lg" className="hover-scale">
+                      Découvrir nos projets
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
