@@ -1,14 +1,24 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+# Robots.txt pour OLCAP-CI
+# Site: https://olcap-ci.allntic.online
 
 User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://olcap-ci.allntic.online/sitemap.xml
+
+# Crawl-delay (optionnel, pour éviter surcharge serveur)
+Crawl-delay: 1
+
+# Bloquer fichiers sensibles (si nécessaire)
+Disallow: /admin
+Disallow: /*.json$
+Disallow: /api/
+
+# Autoriser tous les principaux bots
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Slurp
+User-agent: DuckDuckBot
+User-agent: Baiduspider
 Allow: /

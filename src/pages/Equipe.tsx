@@ -1,8 +1,36 @@
+import { useEffect } from "react";
 import { Users, Heart, Award, Globe } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { updateSEO, addStructuredData } from "@/utils/seo";
 
 const Equipe = () => {
+  useEffect(() => {
+    updateSEO({
+      title: "Notre Équipe | OLCAP-CI - Experts en Santé Publique et Action Sociale",
+      description: "Rencontrez l'équipe de l'OLCAP-CI : médecins, coordinateurs, sensibilisateurs dévoués à améliorer la santé en Côte d'Ivoire.",
+      keywords: "équipe OLCAP, médecins ONG Abidjan, professionnels santé Côte d'Ivoire, bénévoles santé, sensibilisateurs",
+      canonical: "https://olcap-ci.allntic.online/equipe",
+      ogType: "website"
+    });
+
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://olcap-ci.allntic.online/"
+      }, {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Équipe",
+        "item": "https://olcap-ci.allntic.online/equipe"
+      }]
+    };
+    addStructuredData(breadcrumbSchema);
+  }, []);
   const teamMembers = [
     {
       name: "Dr. Kouamé Assouan",
