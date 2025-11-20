@@ -11,9 +11,9 @@ import { updateSEO, addStructuredData, organizationSchema } from "@/utils/seo";
 const Home = () => {
   useEffect(() => {
     updateSEO({
-      title: "OLCAP-CI | Lutte contre l'Anémie, la Pauvreté et les Cancers en Côte d'Ivoire",
-      description: "ONG ivoirienne engagée dans la lutte contre l'anémie, la pauvreté et les cancers féminins. Dépistages gratuits, sensibilisation, Octobre Rose. Abidjan, Yopougon.",
-      keywords: "OLCAP-CI, ONG Côte d'Ivoire, lutte anémie Abidjan, dépistage cancer sein, octobre rose, cancer col utérus, pauvreté Côte d'Ivoire, santé publique Yopougon",
+      title: "OLCAP-CI – Organisation de lutte contre l'anémie et la pauvreté en Côte d'Ivoire",
+      description: "ONG ivoirienne engagée contre l'anémie et la pauvreté. Découvrez nos actions sociales, projets humanitaires et programmes de santé communautaire.",
+      keywords: "lutte contre l'anémie, ONG en Côte d'Ivoire, pauvreté Côte d'Ivoire, malnutrition en Côte d'Ivoire, santé communautaire, organisation humanitaire ivoirienne, programmes sociaux Abidjan, aide humanitaire Côte d'Ivoire, actions sociales en Afrique de l'Ouest",
       canonical: "https://olcap-ci.allntic.online/",
       ogType: "website"
     });
@@ -21,29 +21,29 @@ const Home = () => {
     addStructuredData(organizationSchema);
   }, []);
   const stats = [
-    { icon: Users, value: "500+", label: "Bénéficiaires", color: "primary" },
-    { icon: Heart, value: "50+", label: "Dépistages", color: "accent" },
-    { icon: Target, value: "12", label: "Campagnes", color: "secondary" },
-    { icon: Award, value: "3", label: "Années d'action", color: "hope" },
+    { icon: Users, value: "3 500+", label: "Personnes aidées", color: "primary" },
+    { icon: Target, value: "18", label: "Campagnes de sensibilisation", color: "accent" },
+    { icon: Heart, value: "12", label: "Zones d'intervention", color: "secondary" },
+    { icon: Award, value: "800+", label: "Kits nutritionnels distribués", color: "hope" },
   ];
 
   const services = [
     {
       icon: Stethoscope,
-      title: "Lutte contre l'anémie",
-      description: "Dépistage, prévention et traitement de l'anémie dans les communautés vulnérables.",
+      title: "Lutte contre l'anémie chez les enfants et femmes enceintes",
+      description: "Distribution de kits alimentaires et nutritionnels, sensibilisation dans les écoles et villages, appui aux familles en grande difficulté, programmes de suivi nutritionnel.",
       gradient: "from-primary to-primary-glow"
     },
     {
       icon: HandHeart,
-      title: "Sensibilisation cancers",
-      description: "Campagnes de sensibilisation sur les cancers du sein et du col de l'utérus.",
+      title: "Sensibilisation cancers du sein & col de l'utérus",
+      description: "Émissions radio, campagnes locales, dépistages gratuits dans églises, écoles, mairies en partenariat avec associations et municipalités.",
       gradient: "from-accent to-pink-500"
     },
     {
       icon: ShieldCheck,
       title: "Réduction de la pauvreté",
-      description: "Programmes d'autonomisation et de soutien aux familles démunies.",
+      description: "Programmes d'autonomisation et de soutien aux familles démunies, lutte contre l'analphabétisme et amélioration des conditions de vie.",
       gradient: "from-secondary to-blue-500"
     }
   ];
@@ -52,6 +52,7 @@ const Home = () => {
     { icon: CheckCircle2, text: "60 sensibilisateurs formés au CHU Treichville" },
     { icon: CheckCircle2, text: "Partenariats avec PIF-CI et associations locales" },
     { icon: CheckCircle2, text: "Dépistages gratuits dans toute la Côte d'Ivoire" },
+    { icon: CheckCircle2, text: "Accord-cadre avec PIF-CI pour lutte cancers féminins" },
   ];
 
   return (
@@ -86,19 +87,22 @@ const Home = () => {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/20 shimmer">
                 <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium">3 ans d'impact positif</span>
+                <span className="text-sm font-medium">Organisation humanitaire ivoirienne</span>
               </div>
 
               {/* Main Heading */}
               <div className="space-y-6">
                 <h1 className="text-5xl lg:text-7xl font-extrabold leading-tight">
-                  <span className="gradient-text glow-text">Santé, Solidarité</span>
+                  <span className="gradient-text glow-text">Ensemble,</span>
                   <br />
-                  <span className="text-foreground">& Espoir</span>
+                  <span className="text-foreground">luttons contre l'anémie</span>
+                  <br />
+                  <span className="gradient-text glow-text">et la pauvreté en Côte d'Ivoire</span>
                 </h1>
                 <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed">
-                  OLCAP-CI lutte contre l'anémie, la pauvreté et sensibilise aux cancers féminins 
-                  pour un avenir plus sain en Côte d'Ivoire.
+                  OLCAP-CI est une organisation ivoirienne engagée dans la lutte contre l'anémie, 
+                  la malnutrition et la pauvreté. Nos actions communautaires, nos campagnes de prévention 
+                  et nos projets sociaux améliorent la vie des populations vulnérables.
                 </p>
               </div>
 
@@ -121,12 +125,12 @@ const Home = () => {
                 <Button size="lg" className="pulse-glow text-lg h-14 px-8" asChild>
                   <Link to="/don">
                     <Heart className="w-5 h-5 mr-2" />
-                    Soutenir notre mission
+                    Faire un don
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" className="text-lg h-14 px-8 hover:scale-105 transition-transform" asChild>
-                  <Link to="/mission">
-                    Découvrir nos actions
+                  <Link to="/projets">
+                    Découvrir nos projets
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>
@@ -162,7 +166,7 @@ const Home = () => {
                     <TrendingUp className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-primary">500+</div>
+                    <div className="text-2xl font-bold text-primary">3 500+</div>
                     <div className="text-xs text-muted-foreground">Vies changées</div>
                   </div>
                 </div>
@@ -208,10 +212,11 @@ const Home = () => {
               <span className="text-sm font-medium text-primary">Nos Actions</span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-extrabold mb-6">
-              <span className="gradient-text">Nos domaines d'action</span>
+              <span className="gradient-text">Nos projets en Côte d'Ivoire</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Nous intervenons sur plusieurs fronts pour améliorer la santé et le bien-être des communautés ivoiriennes.
+              Nous œuvrons pour améliorer la santé, l'alimentation et les conditions de vie 
+              des familles les plus touchées par l'anémie et la pauvreté.
             </p>
           </div>
 
@@ -231,10 +236,10 @@ const Home = () => {
                   <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">{service.title}</h3>
                   <p className="text-muted-foreground leading-relaxed text-lg">{service.description}</p>
                   
-                  <div className="mt-6 flex items-center text-primary font-medium group-hover:gap-2 transition-all">
-                    <span className="text-sm">En savoir plus</span>
+                  <Link to="/projets" className="mt-6 flex items-center text-primary font-medium group-hover:gap-2 transition-all">
+                    <span className="text-sm">Voir tous nos projets</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -256,14 +261,12 @@ const Home = () => {
               </div>
               
               <h2 className="text-4xl lg:text-6xl font-extrabold leading-tight">
-                <span className="gradient-text glow-text">Rejoignez notre mission</span>
-                <br />
-                <span className="text-foreground">pour la santé et la solidarité</span>
+                <span className="gradient-text glow-text">Soutenez OLCAP-CI</span>
               </h2>
               
               <p className="text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Ensemble, nous pouvons faire la différence dans la vie de milliers de personnes. 
-                Votre soutien nous aide à continuer nos actions essentielles.
+                Votre contribution permet de sauver des vies et d'améliorer durablement les conditions de vie 
+                des familles vulnérables. Ensemble, faisons la différence contre l'anémie et la pauvreté en Côte d'Ivoire.
               </p>
             </div>
 
