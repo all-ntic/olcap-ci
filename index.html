@@ -3,11 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Preconnect to critical domains -->
+    <link rel="preconnect" href="https://lceuznoxizqibnxazzge.supabase.co" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="dns-prefetch" href="https://js.paystack.co">
+    
     <title>OLCAP-CI - Organisation pour la Lutte Contre l'Anémie et la Pauvreté</title>
     <meta name="description" content="ONG ivoirienne engagée dans la lutte contre l'anémie, la pauvreté et les cancers féminins. Découvrez nos actions et soutenez notre mission." />
     <meta name="keywords" content="OLCAP-CI, ONG Côte d'Ivoire, lutte anémie, cancer sein, octobre rose, santé publique, Yopougon, Abidjan" />
     <meta name="author" content="OLCAP-CI" />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#10b981" />
     <link rel="icon" href="/src/assets/olcap-logo.jpg" type="image/jpeg">
     <link rel="canonical" href="https://olcap-ci.allntic.online/" />
 
@@ -25,6 +32,15 @@
     <meta name="twitter:title" content="OLCAP-CI - Lutte contre l'anémie et la pauvreté" />
     <meta name="twitter:description" content="ONG ivoirienne pour la santé et le bien-être des populations vulnérables" />
     <meta name="twitter:image" content="https://olcap-ci.allntic.online/src/assets/olcap-logo.jpg" />
+    
+    <!-- Performance optimization -->
+    <link rel="preload" as="style" href="/src/index.css" />
+    <style>
+      /* Critical CSS - Above the fold */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: system-ui, -apple-system, sans-serif; }
+      .gradient-text { background: linear-gradient(135deg, #10b981, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
   </head>
 
   <body>
