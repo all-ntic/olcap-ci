@@ -8,9 +8,9 @@ import { updateSEO, addStructuredData } from "@/utils/seo";
 const Projets = () => {
   useEffect(() => {
     updateSEO({
-      title: "Nos Projets | OLCAP-CI - Actions et Programmes sur le Terrain",
-      description: "Découvrez nos projets de dépistage anémie, campagnes Octobre Rose, formations sensibilisateurs et actions concrètes en Côte d'Ivoire.",
-      keywords: "projets OLCAP, dépistage anémie Abidjan, octobre rose Côte d'Ivoire, formation sensibilisateurs, actions santé communautaire",
+      title: "Nos actions – Lutte contre l'anémie et la pauvreté",
+      description: "Découvrez les actions et programmes menés par OLCAP-CI contre l'anémie, la malnutrition et la pauvreté en Côte d'Ivoire.",
+      keywords: "projets OLCAP-CI, actions lutte anémie, dépistage gratuit Abidjan, kits nutritionnels, campagnes sensibilisation Côte d'Ivoire",
       canonical: "https://olcap-ci.allntic.online/projets",
       ogType: "website"
     });
@@ -34,64 +34,68 @@ const Projets = () => {
   }, []);
   const projects = [
     {
-      title: "Dépistage Anémie Communautaire",
-      description: "Programme de dépistage gratuit de l'anémie dans les écoles et centres de santé communautaires",
+      title: "Lutte contre l'anémie chez les enfants et femmes enceintes",
+      description: "Dépistage gratuit de l'anémie, distribution de kits alimentaires et nutritionnels, sensibilisation dans les écoles et villages, programmes de suivi nutritionnel.",
       status: "En cours",
       period: "2024-2025",
-      beneficiaries: "2,500+ personnes",
+      beneficiaries: "3 500+ personnes aidées",
       icon: Activity,
       image: "/placeholder.svg",
       achievements: [
-        "15 centres de dépistage actifs",
-        "500 cas d'anémie détectés",
-        "85% de taux de suivi médical"
+        "18 campagnes de sensibilisation menées",
+        "800+ kits nutritionnels distribués",
+        "12 zones d'intervention actives",
+        "Partenariats avec centres de santé locaux"
       ],
       statusColor: "bg-green-500"
     },
     {
-      title: "Octobre Rose OLCAP-CI",
-      description: "Campagne annuelle de sensibilisation et dépistage des cancers du sein et du col de l'utérus",
-      status: "Annuel",
-      period: "Octobre 2024",
-      beneficiaries: "1,200+ femmes",
+      title: "Sensibilisation cancers du sein & col de l'utérus",
+      description: "Émissions radio, campagnes locales, dépistages gratuits dans églises, écoles et mairies. Partenariat avec PIF-CI pour la lutte contre les cancers féminins.",
+      status: "En cours",
+      period: "Permanent",
+      beneficiaries: "1 500+ femmes sensibilisées",
       icon: Heart,
       image: "/placeholder.svg",
       achievements: [
-        "8 journées de dépistage gratuites",
-        "200 mammographies réalisées",
-        "50 cas suspects référés"
+        "Dépistages gratuits dans toute la Côte d'Ivoire",
+        "Accord-cadre avec PIF-CI",
+        "60 sensibilisateurs formés au CHU Treichville",
+        "Partenariats avec associations et municipalités"
       ],
       statusColor: "bg-pink-500"
     },
     {
-      title: "Formation Sensibilisateurs",
-      description: "Programme de formation de sensibilisateurs communautaires sur les questions de santé",
-      status: "Terminé",
-      period: "2023-2024",
-      beneficiaries: "60 formés",
-      icon: Users,
-      image: "/placeholder.svg",
-      achievements: [
-        "60 sensibilisateurs formés",
-        "12 modules de formation développés",
-        "Partenariat avec CHU Treichville"
-      ],
-      statusColor: "bg-blue-500"
-    },
-    {
-      title: "Lutte Contre la Pauvreté",
-      description: "Initiatives d'autonomisation économique et de soutien aux familles vulnérables",
+      title: "Réduction de la pauvreté et autonomisation",
+      description: "Programmes d'autonomisation et de soutien aux familles démunies, lutte contre l'analphabétisme et amélioration des conditions de vie.",
       status: "En cours",
       period: "2024-2026",
-      beneficiaries: "300+ familles",
+      beneficiaries: "500+ familles accompagnées",
       icon: Target,
       image: "/placeholder.svg",
       achievements: [
-        "50 microcrédits accordés",
-        "100 formations professionnelles",
-        "25 coopératives créées"
+        "Appui aux familles en grande difficulté",
+        "Formations professionnelles offertes",
+        "Distribution aide alimentaire d'urgence",
+        "Accompagnement vers l'autonomie économique"
       ],
-      statusColor: "bg-green-500"
+      statusColor: "bg-secondary"
+    },
+    {
+      title: "Distribution de kits alimentaires et nutritionnels",
+      description: "Distribution ciblée de kits nutritionnels aux populations les plus vulnérables pour lutter contre la malnutrition et l'anémie.",
+      status: "En cours",
+      period: "Permanent",
+      beneficiaries: "800+ bénéficiaires",
+      icon: Users,
+      image: "/placeholder.svg",
+      achievements: [
+        "800+ kits nutritionnels distribués",
+        "Ciblage familles vulnérables prioritaires",
+        "Suivi nutritionnel régulier",
+        "Partenariats avec structures locales"
+      ],
+      statusColor: "bg-hope"
     }
   ];
 
@@ -140,17 +144,25 @@ const Projets = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/10 via-background to-accent/5 py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-              Nos Projets
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/5" />
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-3xl animate-pulse-soft" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/20 shimmer">
+              <Target className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium">Nos Actions</span>
+            </div>
+            <h1 className="text-5xl lg:text-6xl font-bold">
+              <span className="text-gradient">Nos projets en Côte d'Ivoire</span>
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Découvrez nos initiatives concrètes pour améliorer la santé et le bien-être 
-              des communautés ivoiriennes
+            <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              Nous œuvrons pour améliorer la santé, l'alimentation et les conditions de vie 
+              des familles les plus touchées par l'anémie et la pauvreté.
             </p>
           </div>
         </div>
@@ -159,12 +171,13 @@ const Projets = () => {
       {/* Current Projects */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Projets Actuels
+          <div className="text-center mb-16 fade-in-up">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+              Nos Actions Prioritaires
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Nos initiatives en cours qui transforment des vies
+            <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
+              Des interventions concrètes qui changent la vie des communautés vulnérables 
+              en Côte d'Ivoire
             </p>
           </div>
 
@@ -308,7 +321,7 @@ const Projets = () => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 
