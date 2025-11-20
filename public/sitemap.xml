@@ -84,4 +84,12 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- Politique de confidentialité -->
+  <url>
+    <loc>https://olcap-ci.allntic.online/politique-confidentialite</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>

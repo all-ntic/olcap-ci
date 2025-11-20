@@ -10,6 +10,7 @@ import Equipe from "./pages/Equipe";
 import Projets from "./pages/Projets";
 import Contact from "./pages/Contact";
 import MentionsLegales from "./pages/MentionsLegales";
+import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import Don from "./pages/Don";
 import DonSuccess from "./pages/DonSuccess";
 import NotFound from "./pages/NotFound";
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/actualites" element={<Actualites />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />
+            <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
             <Route path="/don" element={<Don />} />
             <Route path="/don/success" element={<DonSuccess />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
