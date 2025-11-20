@@ -44,6 +44,7 @@ export default {
           DEFAULT: "hsl(var(--hope))",
           foreground: "hsl(var(--hope-foreground))",
         },
+        "pink-rose": "hsl(var(--pink-rose))",
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",

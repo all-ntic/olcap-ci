@@ -13,6 +13,9 @@ import MentionsLegales from "./pages/MentionsLegales";
 import Don from "./pages/Don";
 import DonSuccess from "./pages/DonSuccess";
 import NotFound from "./pages/NotFound";
+import APropos from "./pages/APropos";
+import Programmes from "./pages/Programmes";
+import Actualites from "./pages/Actualites";
 
 const queryClient = new QueryClient();
 
@@ -26,8 +29,11 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/mission" element={<Mission />} />
+            <Route path="/a-propos" element={<APropos />} />
             <Route path="/equipe" element={<Equipe />} />
             <Route path="/projets" element={<Projets />} />
+            <Route path="/programmes" element={<Programmes />} />
+            <Route path="/actualites" element={<Actualites />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />
             <Route path="/don" element={<Don />} />

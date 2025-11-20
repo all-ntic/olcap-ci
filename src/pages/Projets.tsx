@@ -1,9 +1,37 @@
+import { useEffect } from "react";
 import { Activity, Users, Heart, Calendar, Target, Award } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import { updateSEO, addStructuredData } from "@/utils/seo";
 
 const Projets = () => {
+  useEffect(() => {
+    updateSEO({
+      title: "Nos Projets | OLCAP-CI - Actions et Programmes sur le Terrain",
+      description: "Découvrez nos projets de dépistage anémie, campagnes Octobre Rose, formations sensibilisateurs et actions concrètes en Côte d'Ivoire.",
+      keywords: "projets OLCAP, dépistage anémie Abidjan, octobre rose Côte d'Ivoire, formation sensibilisateurs, actions santé communautaire",
+      canonical: "https://olcap-ci.allntic.online/projets",
+      ogType: "website"
+    });
+
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://olcap-ci.allntic.online/"
+      }, {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Projets",
+        "item": "https://olcap-ci.allntic.online/projets"
+      }]
+    };
+    addStructuredData(breadcrumbSchema);
+  }, []);
   const projects = [
     {
       title: "Dépistage Anémie Communautaire",

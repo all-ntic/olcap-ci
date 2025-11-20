@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -6,8 +7,20 @@ import { Link } from "react-router-dom";
 import olcapLogo from "@/assets/olcap-logo.jpg";
 import cancerAwareness from "@/assets/cancer-awareness.jpg";
 import FAQSection from "@/components/FAQ/FAQSection";
+import { updateSEO, addStructuredData, organizationSchema } from "@/utils/seo";
 
 const Home = () => {
+  useEffect(() => {
+    updateSEO({
+      title: "OLCAP-CI | Lutte contre l'Anémie, la Pauvreté et les Cancers en Côte d'Ivoire",
+      description: "ONG ivoirienne engagée dans la lutte contre l'anémie, la pauvreté et les cancers féminins. Dépistages gratuits, sensibilisation, Octobre Rose. Abidjan, Yopougon.",
+      keywords: "OLCAP-CI, ONG Côte d'Ivoire, lutte anémie Abidjan, dépistage cancer sein, octobre rose, cancer col utérus, pauvreté Côte d'Ivoire, santé publique Yopougon",
+      canonical: "https://olcap-ci.allntic.online/",
+      ogType: "website"
+    });
+
+    addStructuredData(organizationSchema);
+  }, []);
   const stats = [
     { icon: Users, value: "500+", label: "Bénéficiaires", color: "primary" },
     { icon: Heart, value: "50+", label: "Dépistages", color: "accent" },

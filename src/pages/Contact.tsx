@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
+import { updateSEO, addStructuredData } from "@/utils/seo";
 
 // Validation schema
 const contactSchema = z.object({
@@ -43,6 +44,33 @@ const Contact = () => {
     message: "",
     appointmentDate: ""
   });
+
+  useEffect(() => {
+    updateSEO({
+      title: "Contactez-nous | OLCAP-CI - Yopougon, Abidjan",
+      description: "Contactez l'OLCAP-CI pour vos questions, partenariats ou bénévolat. Téléphone : +225 01 51 83 82 82. Email : olcapcin@gmail.com. Yopougon, Abidjan.",
+      keywords: "contact OLCAP, téléphone ONG Abidjan, email OLCAP-CI, adresse Yopougon, contacter ONG santé Côte d'Ivoire",
+      canonical: "https://olcap-ci.allntic.online/contact",
+      ogType: "website"
+    });
+
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://olcap-ci.allntic.online/"
+      }, {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact",
+        "item": "https://olcap-ci.allntic.online/contact"
+      }]
+    };
+    addStructuredData(breadcrumbSchema);
+  }, []);
 
   const contactInfo = [
     {
@@ -104,15 +132,13 @@ const Contact = () => {
 
       const validatedData = validationResult.data;
 
-      const { error } = await supabase.from('OLCAP-CI_message').insert([
+      const { error } = await supabase.from('contact_messages').insert([
         {
           name: validatedData.name,
           email: validatedData.email,
-          phone: validatedData.phone || null,
-          contact_type: validatedData.contactType,
-          preferred_contact: validatedData.preferredContact,
+          subject: validatedData.contactType,
           message: validatedData.message,
-          appointment_date: validatedData.appointmentDate || null
+          company: validatedData.phone || null,
         }
       ]);
 

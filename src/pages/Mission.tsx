@@ -1,9 +1,37 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heart, Target, Users, TrendingUp, Stethoscope, BookOpen, ShieldCheck } from "lucide-react";
 import cancerAwareness from "@/assets/cancer-awareness.jpg";
+import { updateSEO, addStructuredData } from "@/utils/seo";
 
 const Mission = () => {
+  useEffect(() => {
+    updateSEO({
+      title: "Notre Mission | OLCAP-CI - Santé, Solidarité et Espoir en Côte d'Ivoire",
+      description: "Découvrez la mission de l'OLCAP-CI : lutte contre l'anémie, réduction de la pauvreté, sensibilisation aux cancers féminins et alphabétisation en Côte d'Ivoire.",
+      keywords: "mission OLCAP, objectifs ONG, santé Côte d'Ivoire, lutte anémie, prévention cancer, alphabétisation, pauvreté Abidjan",
+      canonical: "https://olcap-ci.allntic.online/mission",
+      ogType: "website"
+    });
+
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://olcap-ci.allntic.online/"
+      }, {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Mission",
+        "item": "https://olcap-ci.allntic.online/mission"
+      }]
+    };
+    addStructuredData(breadcrumbSchema);
+  }, []);
   const missions = [
     {
       icon: Stethoscope,

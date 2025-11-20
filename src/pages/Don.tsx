@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Heart, CreditCard, Shield, Check, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
+import { updateSEO, addStructuredData } from "@/utils/seo";
 
 // Validation schema for donation form
 const donationSchema = z.object({
@@ -49,8 +50,35 @@ const Don = () => {
     phone: "",
     amount: "",
     message: "",
-    campaign: "general"
+    campaign: ""
   });
+
+  useEffect(() => {
+    updateSEO({
+      title: "Faire un Don | OLCAP-CI - Soutenez Nos Actions en Côte d'Ivoire",
+      description: "Soutenez l'OLCAP-CI avec un don sécurisé via Paystack. Chaque contribution aide à financer nos programmes de santé et de lutte contre la pauvreté.",
+      keywords: "don OLCAP, donation ONG Côte d'Ivoire, soutenir santé Abidjan, don sécurisé Paystack, aide humanitaire",
+      canonical: "https://olcap-ci.allntic.online/don",
+      ogType: "website"
+    });
+
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://olcap-ci.allntic.online/"
+      }, {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Faire un Don",
+        "item": "https://olcap-ci.allntic.online/don"
+      }]
+    };
+    addStructuredData(breadcrumbSchema);
+  }, []);
 
   const predefinedAmounts = [5000, 10000, 25000, 50000, 100000];
   const campaigns = [
