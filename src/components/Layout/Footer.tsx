@@ -104,6 +104,10 @@ const Footer = () => {
               Mentions légales
             </Link>
             <span className="text-muted-foreground">•</span>
+            <Link to="/politique-confidentialite" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              Confidentialité
+            </Link>
+            <span className="text-muted-foreground">•</span>
             <span className="text-sm text-muted-foreground">
               Made with ❤️ for health
             </span>
