@@ -7,9 +7,9 @@ import { updateSEO, addStructuredData } from "@/utils/seo";
 const Equipe = () => {
   useEffect(() => {
     updateSEO({
-      title: "Notre Équipe | OLCAP-CI - Experts en Santé Publique et Action Sociale",
-      description: "Rencontrez l'équipe de l'OLCAP-CI : médecins, coordinateurs, sensibilisateurs dévoués à améliorer la santé en Côte d'Ivoire.",
-      keywords: "équipe OLCAP, médecins ONG Abidjan, professionnels santé Côte d'Ivoire, bénévoles santé, sensibilisateurs",
+      title: "Notre Équipe & Partenaires | OLCAP-CI - Professionnels de Santé Dévoués en Côte d'Ivoire",
+      description: "Découvrez l'équipe pluridisciplinaire d'OLCAP-CI : médecins, nutritionnistes, coordinateurs et 500+ bénévoles engagés contre l'anémie, la pauvreté et les cancers féminins en Côte d'Ivoire. 8 ans d'expérience, 15 communautés touchées.",
+      keywords: "équipe OLCAP-CI, médecins ONG Abidjan, professionnels santé Côte d'Ivoire, bénévoles santé publique, hématologues Abidjan, oncologues Yopougon, nutritionnistes ONG, sensibilisateurs santé, équipe humanitaire Côte d'Ivoire, Dr Kouamé Assouan, partenaires santé Abidjan, ONG santé communautaire",
       canonical: "https://olcap-ci.allntic.online/equipe",
       ogType: "website"
     });
@@ -25,64 +25,115 @@ const Equipe = () => {
       }, {
         "@type": "ListItem",
         "position": 2,
-        "name": "Équipe",
+        "name": "Équipe & Partenaires",
         "item": "https://olcap-ci.allntic.online/equipe"
       }]
     };
+
+    const organizationTeamSchema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "OLCAP-CI",
+      "url": "https://olcap-ci.allntic.online",
+      "member": [
+        {
+          "@type": "OrganizationRole",
+          "member": {
+            "@type": "Person",
+            "name": "Dr. Kouamé Assouan",
+            "jobTitle": "Directeur Médical",
+            "hasOccupation": {
+              "@type": "Occupation",
+              "name": "Hématologue & Nutritionniste"
+            }
+          },
+          "roleName": "Directeur Médical"
+        },
+        {
+          "@type": "OrganizationRole",
+          "member": {
+            "@type": "Person",
+            "name": "Mme Adjoua Koffi",
+            "jobTitle": "Coordinatrice Programmes"
+          },
+          "roleName": "Coordinatrice Programmes Santé Communautaire"
+        },
+        {
+          "@type": "OrganizationRole",
+          "member": {
+            "@type": "Person",
+            "name": "Dr. Marie Tanoh",
+            "jobTitle": "Responsable Dépistage"
+          },
+          "roleName": "Responsable Dépistage Cancers Féminins"
+        },
+        {
+          "@type": "OrganizationRole",
+          "member": {
+            "@type": "Person",
+            "name": "M. Yao Kouassi",
+            "jobTitle": "Responsable Terrain"
+          },
+          "roleName": "Coordinateur Actions de Proximité"
+        }
+      ]
+    };
+
     addStructuredData(breadcrumbSchema);
+    addStructuredData(organizationTeamSchema);
   }, []);
   const teamMembers = [
     {
       name: "Dr. Kouamé Assouan",
-      role: "Directeur Médical",
-      specialty: "Hématologie & Nutrition",
+      role: "Directeur Médical & Fondateur",
+      specialty: "Hématologie, Nutrition & Santé Publique",
       image: "/placeholder.svg",
-      description: "Expert en lutte contre l'anémie avec 15 ans d'expérience clinique"
+      description: "Expert en lutte contre l'anémie et malnutrition avec 15+ ans d'expérience clinique en Afrique de l'Ouest. Pionnier des programmes de dépistage communautaire en Côte d'Ivoire."
     },
     {
       name: "Mme Adjoua Koffi",
-      role: "Coordinatrice Programmes",
-      specialty: "Santé Communautaire",
+      role: "Coordinatrice Programmes Sociaux",
+      specialty: "Santé Communautaire & Éducation",
       image: "/placeholder.svg",
-      description: "Spécialisée dans la sensibilisation et l'éducation sanitaire"
+      description: "10 ans d'expérience en mobilisation sociale et sensibilisation sanitaire. A formé 60+ agents de santé communautaire à travers Abidjan et l'intérieur du pays."
     },
     {
       name: "Dr. Marie Tanoh",
-      role: "Responsable Dépistage",
-      specialty: "Oncologie Gynécologique",
+      role: "Responsable Dépistage Cancers Féminins",
+      specialty: "Oncologie Gynécologique & Prévention",
       image: "/placeholder.svg",
-      description: "Experte en dépistage des cancers du sein et du col de l'utérus"
+      description: "Spécialiste en dépistage précoce des cancers du sein et du col de l'utérus. Coordonne les campagnes Octobre Rose et les partenariats avec le CHU de Treichville."
     },
     {
       name: "M. Yao Kouassi",
-      role: "Responsable Terrain",
-      specialty: "Mobilisation Sociale",
+      role: "Responsable Actions de Terrain",
+      specialty: "Mobilisation Sociale & Proximité",
       image: "/placeholder.svg",
-      description: "Coordinateur des actions de proximité et sensibilisation"
+      description: "Coordinateur des interventions dans les écoles, églises et villages. Expert en animation communautaire et gestion de bénévoles sur le terrain."
     }
   ];
 
   const stats = [
-    { icon: Users, value: "12+", label: "Membres actifs", color: "text-primary" },
-    { icon: Heart, value: "500+", label: "Bénévoles", color: "text-accent" },
-    { icon: Award, value: "8", label: "Années d'expérience", color: "text-secondary" },
-    { icon: Globe, value: "15", label: "Communautés touchées", color: "text-primary" }
+    { icon: Users, value: "12+", label: "Professionnels de santé", color: "text-primary" },
+    { icon: Heart, value: "500+", label: "Bénévoles formés et actifs", color: "text-accent" },
+    { icon: Award, value: "8+", label: "Années d'expertise terrain", color: "text-secondary" },
+    { icon: Globe, value: "15+", label: "Communautés partenaires", color: "text-primary" }
   ];
 
   const values = [
     {
-      title: "Professionnalisme",
-      description: "Une équipe qualifiée et engagée pour des actions de qualité",
+      title: "Excellence Médicale",
+      description: "Une équipe hautement qualifiée de médecins, nutritionnistes et spécialistes certifiés garantissant des interventions sanitaires de classe internationale",
       icon: Award
     },
     {
-      title: "Proximité",
-      description: "Au plus près des communautés pour un impact réel et durable",
+      title: "Proximité Communautaire",
+      description: "Présence active sur le terrain dans 15+ communautés. Actions directes dans les écoles, églises, villages et quartiers pour toucher les populations les plus vulnérables",
       icon: Heart
     },
     {
-      title: "Transparence",
-      description: "Une gestion transparente et responsable de nos actions",
+      title: "Transparence Totale",
+      description: "Gestion rigoureuse et traçable de chaque don, publication régulière des rapports d'activités et communication ouverte avec nos partenaires et bénéficiaires",
       icon: Globe
     }
   ];
@@ -94,11 +145,12 @@ const Equipe = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-              Notre Équipe
+              Notre Équipe & Partenaires
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Une équipe passionnée et qualifiée au service de la santé et du bien-être 
-              des communautés ivoiriennes
+              Des professionnels de santé dévoués, 500+ bénévoles engagés et des partenaires stratégiques 
+              unis pour transformer la santé communautaire en Côte d'Ivoire. Ensemble depuis 2020, 
+              nous touchons 15+ communautés à Abidjan et dans tout le pays.
             </p>
           </div>
         </div>
@@ -126,10 +178,11 @@ const Equipe = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Membres de l'Équipe
+              Équipe Dirigeante OLCAP-CI
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Rencontrez les professionnels dévoués qui dirigent nos initiatives de santé
+              Une équipe pluridisciplinaire de médecins, coordinateurs et spécialistes terrain 
+              avec des décennies d'expérience cumulée en santé publique et action sociale
             </p>
           </div>
 
@@ -158,10 +211,11 @@ const Equipe = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Nos Valeurs
+              Nos Valeurs Fondamentales
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Les principes qui guident notre action quotidienne
+              Les principes éthiques et professionnels qui orientent chaque action de l'OLCAP-CI 
+              depuis sa création et guident notre engagement quotidien
             </p>
           </div>
 
@@ -186,11 +240,13 @@ const Equipe = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Rejoignez Notre Mission
+              Devenez Acteur du Changement
             </h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Nous recherchons toujours des professionnels passionnés et des bénévoles 
-              dévoués pour renforcer notre équipe et amplifier notre impact.
+              Rejoignez nos 500+ bénévoles et notre réseau de 15+ partenaires communautaires. 
+              Que vous soyez professionnel de santé, étudiant, retraité ou simplement passionné 
+              par l'action sociale, il y a une place pour vous dans l'équipe OLCAP-CI. 
+              Ensemble, sauvons des vies et bâtissons une Côte d'Ivoire en meilleure santé.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
