@@ -47,9 +47,9 @@ const Contact = () => {
 
   useEffect(() => {
     updateSEO({
-      title: "Contactez-nous | OLCAP-CI - Yopougon, Abidjan",
-      description: "Contactez l'OLCAP-CI pour vos questions, partenariats ou bénévolat. Téléphone : +225 01 51 83 82 82. Email : olcapcin@gmail.com. Yopougon, Abidjan.",
-      keywords: "contact OLCAP, téléphone ONG Abidjan, email OLCAP-CI, adresse Yopougon, contacter ONG santé Côte d'Ivoire",
+      title: "Contactez OLCAP-CI – Organisation humanitaire à Abidjan",
+      description: "Contactez-nous pour en savoir plus sur nos actions et projets. Téléphone : +225 01 51 83 82 82 | Email : olcapcin@gmail.com | Ananeraie, Yopougon, Abidjan.",
+      keywords: "contact OLCAP-CI, téléphone ONG Abidjan, email OLCAP, adresse Yopougon, contacter ONG Côte d'Ivoire, bénévolat OLCAP",
       canonical: "https://olcap-ci.allntic.online/contact",
       ogType: "website"
     });
