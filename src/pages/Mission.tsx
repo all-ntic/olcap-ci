@@ -8,13 +8,15 @@ import { updateSEO, addStructuredData } from "@/utils/seo";
 const Mission = () => {
   useEffect(() => {
     updateSEO({
-      title: "Notre Mission | OLCAP-CI - Santé, Solidarité et Espoir en Côte d'Ivoire",
-      description: "Découvrez la mission de l'OLCAP-CI : lutte contre l'anémie, réduction de la pauvreté, sensibilisation aux cancers féminins et alphabétisation en Côte d'Ivoire.",
-      keywords: "mission OLCAP, objectifs ONG, santé Côte d'Ivoire, lutte anémie, prévention cancer, alphabétisation, pauvreté Abidjan",
+      title: "Mission OLCAP-CI 2025 | Lutte Anémie, Cancers Féminins & Pauvreté - Côte d'Ivoire",
+      description: "Découvrez la mission de l'OLCAP-CI en Côte d'Ivoire : lutte contre l'anémie (dépistage, prévention, traitement), sensibilisation cancers du sein et col de l'utérus, réduction pauvreté, alphabétisation. ONG santé communautaire Abidjan.",
+      keywords: "mission OLCAP-CI, objectifs ONG santé Côte d'Ivoire, lutte contre anémie Abidjan, prévention cancer sein col utérus, dépistage gratuit cancer Yopougon, réduction pauvreté Côte d'Ivoire, alphabétisation adultes Abidjan, ONG santé communautaire, octobre rose Côte d'Ivoire, programmes sociaux Abidjan, solidarité santé Afrique",
       canonical: "https://olcap-ci.allntic.online/mission",
-      ogType: "website"
+      ogType: "website",
+      ogImage: "https://olcap-ci.allntic.online/src/assets/cancer-awareness.jpg"
     });
 
+    // Breadcrumb Schema
     const breadcrumbSchema = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -30,7 +32,110 @@ const Mission = () => {
         "item": "https://olcap-ci.allntic.online/mission"
       }]
     };
+
+    // Mission & Goals Schema
+    const missionSchema = {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "OLCAP-CI",
+      "url": "https://olcap-ci.allntic.online",
+      "logo": "https://olcap-ci.allntic.online/src/assets/olcap-logo.jpg",
+      "description": "ONG ivoirienne dédiée à la lutte contre l'anémie, la pauvreté, l'analphabétisme et les cancers féminins en Côte d'Ivoire",
+      "mission": "Transformer des vies par la santé et la solidarité à travers des actions concrètes de prévention, dépistage, sensibilisation et accompagnement des populations vulnérables en Côte d'Ivoire",
+      "foundingDate": "2020",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Côte d'Ivoire"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ananeraie, Yopougon",
+        "addressLocality": "Abidjan",
+        "addressCountry": "CI"
+      },
+      "knowsAbout": [
+        "Lutte contre l'anémie",
+        "Dépistage et prévention de l'anémie",
+        "Prévention des cancers féminins",
+        "Dépistage cancer du sein",
+        "Dépistage cancer du col de l'utérus",
+        "Campagne Octobre Rose",
+        "Réduction de la pauvreté",
+        "Programmes d'alphabétisation",
+        "Autonomisation économique",
+        "Santé communautaire Côte d'Ivoire"
+      ],
+      "nonprofitStatus": "NGO",
+      "slogan": "Santé, Solidarité, Prévention, Éducation, Espoir"
+    };
+
+    // Service Catalog Schema
+    const serviceSchema = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Santé Communautaire et Action Sociale",
+      "provider": {
+        "@type": "NGO",
+        "name": "OLCAP-CI",
+        "url": "https://olcap-ci.allntic.online"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Côte d'Ivoire"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Programmes de Santé et Action Sociale",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Lutte contre l'anémie",
+              "description": "Prévention, détection, correction et sensibilisation sur l'anémie dans les communautés vulnérables. Dépistages gratuits, distribution de compléments, sensibilisation nutritionnelle et suivi médical."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Réduction de la pauvreté",
+              "description": "Programmes d'autonomisation et de soutien économique pour les familles démunies : microcrédits, formation professionnelle, soutien aux activités génératrices de revenus, aide alimentaire."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Lutte contre l'analphabétisme",
+              "description": "Programmes d'alphabétisation et d'éducation pour tous les âges : cours d'alphabétisation, soutien scolaire, formation continue, sensibilisation à l'éducation."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Sensibilisation aux cancers féminins",
+              "description": "Campagnes de prévention et dépistage des cancers du sein et du col de l'utérus : Octobre Rose, dépistages gratuits, sensibilisation communautaire, accompagnement psychologique."
+            }
+          }
+        ]
+      }
+    };
+
     addStructuredData(breadcrumbSchema);
+    
+    // Add mission schema
+    const missionScript = document.createElement('script');
+    missionScript.type = 'application/ld+json';
+    missionScript.text = JSON.stringify(missionSchema);
+    document.head.appendChild(missionScript);
+    
+    // Add service schema
+    const serviceScript = document.createElement('script');
+    serviceScript.type = 'application/ld+json';
+    serviceScript.text = JSON.stringify(serviceSchema);
+    document.head.appendChild(serviceScript);
   }, []);
   const missions = [
     {
