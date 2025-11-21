@@ -8,13 +8,15 @@ import { updateSEO, addStructuredData } from "@/utils/seo";
 const Actualites = () => {
   useEffect(() => {
     updateSEO({
-      title: "Actualités OLCAP-CI | Dernières Actions et Événements Santé",
-      description: "Suivez nos dernières campagnes de dépistage, événements Octobre Rose, formations et actions de terrain en Côte d'Ivoire. Actualités fraîches de l'OLCAP-CI.",
-      keywords: "actualités OLCAP, news santé Côte d'Ivoire, octobre rose 2025, campagne dépistage Abidjan, événements ONG santé, nouvelles OLCAP-CI",
+      title: "Actualités OLCAP-CI 2025 | Actions Santé, Dépistages & Octobre Rose Abidjan",
+      description: "Suivez en temps réel nos campagnes de dépistage gratuit des cancers féminins, Octobre Rose 2025, formations de sensibilisateurs et actions contre l'anémie en Côte d'Ivoire. Actualités humanitaires OLCAP-CI Abidjan.",
+      keywords: "actualités OLCAP-CI 2025, news santé Côte d'Ivoire, octobre rose Abidjan 2025, campagne dépistage cancer gratuit, dépistage anémie Yopougon, événements ONG santé Abidjan, formations sensibilisateurs santé, partenariat PIF-CI, CHU Treichville dépistage, actions humanitaires Côte d'Ivoire",
       canonical: "https://olcap-ci.allntic.online/actualites",
-      ogType: "website"
+      ogType: "website",
+      ogImage: "https://olcap-ci.allntic.online/src/assets/cancer-awareness.jpg"
     });
 
+    // Breadcrumb Schema
     const breadcrumbSchema = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -30,7 +32,156 @@ const Actualites = () => {
         "item": "https://olcap-ci.allntic.online/actualites"
       }]
     };
+
+    // News Articles Schema (Collection)
+    const newsArticlesSchema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "NewsArticle",
+          "position": 1,
+          "headline": "Lancement de la Campagne Octobre Rose 2025 - OLCAP-CI",
+          "description": "Notre grande campagne annuelle de sensibilisation et de dépistage gratuit des cancers féminins démarre ce mois-ci dans plusieurs quartiers d'Abidjan.",
+          "datePublished": "2025-10-01",
+          "dateModified": "2025-10-01",
+          "author": {
+            "@type": "Organization",
+            "name": "OLCAP-CI",
+            "url": "https://olcap-ci.allntic.online"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "OLCAP-CI",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://olcap-ci.allntic.online/src/assets/olcap-logo.jpg"
+            }
+          },
+          "image": "https://olcap-ci.allntic.online/src/assets/cancer-awareness.jpg",
+          "articleSection": "Octobre Rose",
+          "keywords": "octobre rose 2025, dépistage gratuit cancer, Yopougon, Abobo, Koumassi, mammographie gratuite"
+        },
+        {
+          "@type": "NewsArticle",
+          "position": 2,
+          "headline": "300 Femmes Dépistées lors de la Journée Mondiale contre le Cancer",
+          "description": "Un succès retentissant pour notre journée de dépistage gratuit organisée à l'occasion de la Journée Mondiale de Lutte contre le Cancer.",
+          "datePublished": "2025-02-04",
+          "dateModified": "2025-02-04",
+          "author": {
+            "@type": "Person",
+            "name": "Dr. Kouassi"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "OLCAP-CI",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://olcap-ci.allntic.online/src/assets/olcap-logo.jpg"
+            }
+          },
+          "articleSection": "Dépistage",
+          "keywords": "dépistage gratuit cancer, journée mondiale cancer, 300 femmes dépistées Abidjan"
+        },
+        {
+          "@type": "NewsArticle",
+          "position": 3,
+          "headline": "Formation de 25 Nouveaux Sensibilisateurs au CHU de Treichville",
+          "description": "Renforcement des capacités de nos équipes avec la formation de 25 nouveaux sensibilisateurs spécialisés dans la prévention des cancers féminins.",
+          "datePublished": "2025-01-15",
+          "dateModified": "2025-01-15",
+          "author": {
+            "@type": "Organization",
+            "name": "Équipe Formation OLCAP-CI"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "OLCAP-CI",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://olcap-ci.allntic.online/src/assets/olcap-logo.jpg"
+            }
+          },
+          "articleSection": "Formation",
+          "keywords": "formation sensibilisateurs santé, CHU Treichville, prévention cancer féminin Abidjan"
+        },
+        {
+          "@type": "NewsArticle",
+          "position": 4,
+          "headline": "500 Personnes Dépistées pour l'Anémie en Décembre 2024",
+          "description": "Bilan très positif de notre campagne de fin d'année contre l'anémie : plus de 500 tests réalisés et 120 cas traités avec succès.",
+          "datePublished": "2024-12-20",
+          "dateModified": "2024-12-20",
+          "author": {
+            "@type": "Organization",
+            "name": "OLCAP-CI"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "OLCAP-CI",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://olcap-ci.allntic.online/src/assets/olcap-logo.jpg"
+            }
+          },
+          "articleSection": "Anémie",
+          "keywords": "dépistage anémie Côte d'Ivoire, traitement anémie gratuit, compléments fer distribution"
+        },
+        {
+          "@type": "NewsArticle",
+          "position": 5,
+          "headline": "Accord-Cadre Signé avec PIF-CI pour Renforcer la Lutte contre les Cancers Féminins",
+          "description": "Signature d'un partenariat stratégique avec le PIF-CI pour intensifier nos actions de prévention et de dépistage des cancers du sein et du col de l'utérus.",
+          "datePublished": "2024-11-10",
+          "dateModified": "2024-11-10",
+          "author": {
+            "@type": "Organization",
+            "name": "Direction OLCAP-CI"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "OLCAP-CI",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://olcap-ci.allntic.online/src/assets/olcap-logo.jpg"
+            }
+          },
+          "articleSection": "Partenariat",
+          "keywords": "partenariat PIF-CI, accord-cadre santé, lutte cancer féminin Côte d'Ivoire"
+        },
+        {
+          "@type": "NewsArticle",
+          "position": 6,
+          "headline": "Émission Radio Spéciale : Tout Savoir sur le Cancer du Col de l'Utérus",
+          "description": "Retour sur notre émission radio à succès diffusée sur Radio Jam FM et suivie par plus de 50 000 auditeurs.",
+          "datePublished": "2024-10-25",
+          "dateModified": "2024-10-25",
+          "author": {
+            "@type": "Person",
+            "name": "Dr. Assouan"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "OLCAP-CI",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://olcap-ci.allntic.online/src/assets/olcap-logo.jpg"
+            }
+          },
+          "articleSection": "Sensibilisation",
+          "keywords": "sensibilisation cancer col utérus, radio Jam FM Abidjan, éducation santé Côte d'Ivoire"
+        }
+      ]
+    };
+
     addStructuredData(breadcrumbSchema);
+    
+    // Add news articles schema
+    const newsScript = document.createElement('script');
+    newsScript.type = 'application/ld+json';
+    newsScript.text = JSON.stringify(newsArticlesSchema);
+    document.head.appendChild(newsScript);
   }, []);
 
   const actualites = [
