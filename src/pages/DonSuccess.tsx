@@ -4,12 +4,30 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { Link } from "react-router-dom";
+import { updateSEO, addStructuredData } from "@/utils/seo";
 
 const DonSuccess = () => {
   const { toast } = useToast();
   const [reference, setReference] = useState<string>("");
 
   useEffect(() => {
+    // SEO
+    updateSEO({
+      title: "Merci pour votre Don | OLCAP-CI",
+      description: "Votre don a été reçu avec succès. Merci de soutenir OLCAP-CI dans sa mission de lutte contre l'anémie et les cancers féminins en Côte d'Ivoire.",
+      keywords: "don confirmé, merci, OLCAP-CI, contribution, solidarité, santé",
+      canonical: "https://olcap-ci.allntic.online/don-success",
+      ogImage: "https://olcap-ci.allntic.online/og-image.jpg"
+    });
+
+    addStructuredData({
+      "@context": "https://schema.org",
+      "@type": "ThankYouPage",
+      "name": "Page de Confirmation de Don",
+      "description": "Confirmation de don à OLCAP-CI",
+      "url": "https://olcap-ci.allntic.online/don-success"
+    });
+
     // Get transaction reference from URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const ref = urlParams.get('reference');
